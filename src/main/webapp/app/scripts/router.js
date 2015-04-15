@@ -10,42 +10,47 @@
  *        through the $scope.
  * @see https://docs.angularjs.org/guide/di
  */
-FirstApp.config([ '$routeProvider', function($routeProvider) {
-	$routeProvider.when('/', {
-    templateUrl : 'views/main.html',
-    controller : 'MainCtrl'
+FirstApp.config(['$routeProvider', function ($routeProvider) {
+  $routeProvider.when('/', {
+    templateUrl: 'views/main.html',
+    controller: 'MainCtrl'
   });
 
 
   $routeProvider.when('/browse_category/:id', {
-    templateUrl : 'views/browse_category.html',
-    controller : 'BrowseCategoryController'
+    templateUrl: 'views/browse_category.html',
+    controller: 'BrowseCategoryController'
   });
 
   $routeProvider.when('/book/details/:id', {
-    templateUrl : 'views/book_details.html'
+    templateUrl: 'views/book_details.html'
   });
 
-	$routeProvider.when('/login', {
-		templateUrl : 'views/login.html',
-		controller : 'LoginController'
-	});
+  $routeProvider.when('/login', {
+    templateUrl: 'views/login.html',
+    controller: 'LoginController'
+  });
 
 
-	$routeProvider.when('/categories', {
-		templateUrl : 'views/category.html',
-		controller : 'CategoryController'
-	});
+  $routeProvider.when('/categories', {
+    templateUrl: 'views/category.html',
+    controller: 'CategoryController'
+  });
 
-	$routeProvider.when('/books/:id?', {
-		templateUrl : 'views/book.html',
-		controller : 'BookController'
-	});
+  $routeProvider.when('/books/:id?', {
+    templateUrl: 'views/book.html',
+    controller: 'BookController'
+  });
 
-	$routeProvider.when('/404', {
-		templateUrl : '404.html'
-	});
-	$routeProvider.otherwise({
-		redirectTo : '/'
-	});
-} ]);
+  $routeProvider.when('/search', {
+    templateUrl: 'views/search_results.html',
+    controller: 'SearchController'
+  });
+
+  $routeProvider.when('/404', {
+    templateUrl: '404.html'
+  });
+  $routeProvider.otherwise({
+    redirectTo: '/'
+  });
+}]);

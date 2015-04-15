@@ -43,8 +43,8 @@ public class BookResource extends CrudResource<Book, BookService> {
         return getService().findPromotedBooks();
     }
 
+
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
-    @Transactional
     public List search(@RequestParam String text) {
         return service.search(text);
     }

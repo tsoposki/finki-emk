@@ -12,6 +12,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.hibernate.search.jpa.Search;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,44 +23,44 @@ public class BookServiceImpl extends
         BaseEntityCrudServiceImpl<Book, BookRepository> implements
         BookService {
 
-    @Autowired
-    private BookRepository repository;
+  @Autowired
+  private BookRepository repository;
 
-    @Override
-    protected BookRepository getRepository() {
-        return repository;
-    }
+  @Override
+  protected BookRepository getRepository() {
+    return repository;
+  }
 
-    @Override
-    public List<Book> findByCategoryId(Long id) {
-        return repository.findByCategoryId(id);
-    }
+  @Override
+  public List<Book> findByCategoryId(Long id) {
+    return repository.findByCategoryId(id);
+  }
 
-    @PersistenceContext
-    private EntityManager em;
+  @PersistenceContext
+  private EntityManager em;
 
-    @Transactional
-    public List search(String text) {
-        FullTextEntityManager fullTextEntityManager = org.hibernate.search.jpa.Search.getFullTextEntityManager(em);
+  @Transactional
+  public List search(String text) {
+    FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
 
-        QueryBuilder qb = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder().forEntity(Book.class).get();
+    QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+            .buildQueryBuilder().forEntity(Book.class).get();
 
-        org.apache.lucene.search.Query luceneQuery = qb.keyword()
-                .onFields("name", "description", "category.name")
-                .matching(text)
-                .createQuery();
+    org.apache.lucene.search.Query luceneQuery = qb.keyword()
+            .onFields("name", "description", "category.name")
+            .matching(text)
+            .createQuery();
 
-        // wrap Lucene query in a javax.persistence.Query
-        javax.persistence.Query jpaQuery =
-                fullTextEntityManager.createFullTextQuery(luceneQuery, Book.class);
+    // wrap Lucene query in a javax.persistence.Query
+    javax.persistence.Query jpaQuery =
+            fullTextEntityManager.createFullTextQuery(luceneQuery, Book.class);
 
-        // execute search
-        return jpaQuery.getResultList();
-    }
+    // execute search
+    return jpaQuery.getResultList();
+  }
 
-    @Override
-    public List<Book> findPromotedBooks() {
-        return repository.findByPromoted(true);
-    }
+  @Override
+  public List<Book> findPromotedBooks() {
+    return repository.findByPromoted(true);
+  }
 }
