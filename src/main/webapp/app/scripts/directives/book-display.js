@@ -19,9 +19,18 @@ FirstApp.directive('bookDisplay', [
 
         };
       },
-      controller: function ($scope, $element, crudService, $injector) {
+      controller: function ($scope, $element, crudService, $cookies) {
+        var ordersService = crudService('order_items');
         $scope.display = function () {
           $location.path('/book/details/' + $scope.entity.id);
+        };
+
+        $scope.addToCart = function () {
+          ordersService.save({
+            book: {
+              id: $scope.entity.id
+            }
+          });
         }
       },
       templateUrl: 'directives/book-display.html'

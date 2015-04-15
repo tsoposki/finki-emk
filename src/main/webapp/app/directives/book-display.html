@@ -7,8 +7,13 @@
       <div class="col-md-6">
         <h4 ng-click="display()" class="clickable">{{entity.name}}</h4>
       </div>
-      <div class="col-md-6 label label-info">
+      <div class="col-md-4 label label-info">
         {{ entity.category.name }}
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-xs" ng-click="addToCart()">
+          <i class="fa fa-fw fa-shopping-cart"></i> Add to cart
+        </button>
       </div>
       <div class="row">
         <div class="col-md-12">{{entity.description}}</div>

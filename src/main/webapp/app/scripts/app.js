@@ -13,20 +13,25 @@
  *       directive
  * @description # avAngularStartupApp Main module of the application.
  */
-var FirstApp = angular.module('avAngularStartupApp', [ 'ngResource', 'ngRoute',
-		'ngAnimate', 'ngTable', 'ngTableExport', 'ngCookies',
-		'chieffancypants.loadingBar', 'ui.bootstrap', 'ui.select2',
-		'mgcrea.ngStrap', 'toaster', 'angularFileUpload',
-		'pascalprecht.translate' ]);
+var FirstApp = angular.module('avAngularStartupApp', ['ngResource', 'ngRoute',
+  'ngAnimate', 'ngTable', 'ngTableExport', 'ngCookies',
+  'chieffancypants.loadingBar', 'ui.bootstrap', 'ui.select2',
+  'mgcrea.ngStrap', 'toaster', 'angularFileUpload',
+  'pascalprecht.translate']);
 
-FirstApp.config([ '$translateProvider', '$httpProvider', 'settings',
-		function($translateProvider, $httpProvider, settings) {
+FirstApp.config(['$translateProvider', '$httpProvider', 'settings',
+  function ($translateProvider, $httpProvider, settings) {
 
-			//$httpProvider.interceptors.push('HRHttpInterceptors');
-		} ]);
+    //$httpProvider.interceptors.push('HRHttpInterceptors');
+  }]);
 
-FirstApp.run(['$rootScope', 'crudService',function($rootScope, crudService){
-  var categoryService  = crudService('categories');
+FirstApp.run(['$rootScope', '$http', 'crudService', 'settings', function ($rootScope, $http, crudService, settings) {
+  var categoryService = crudService('categories');
   $rootScope.test = "Testing root scope";
   $rootScope.categories = categoryService.query();
+
+  var tempTokenService = $http.get(settings.contextPath + '/data/rest/token').
+    success(function (data, status, headers, config) {
+      console.log('token obtained')
+    })
 }]);
