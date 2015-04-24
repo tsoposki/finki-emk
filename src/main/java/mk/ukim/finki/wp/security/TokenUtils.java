@@ -38,8 +38,10 @@ public class TokenUtils {
 			throw new IllegalStateException("No MD5 algorithm available!");
 		}
 
-		return new String(Hex.encode(digest.digest(signatureBuilder.toString()
+		String out= new String(Hex.encode(digest.digest(signatureBuilder.toString()
 				.getBytes())));
+		System.out.println(out);
+		return out;
 	}
 
 	public static String getUserNameFromToken(String authToken) {

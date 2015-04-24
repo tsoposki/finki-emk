@@ -34,7 +34,7 @@
     <!-- Lucene configuration  -->
     <util:map id="jpaPropertyMap">
         <entry key="hibernate.search.default.directory_provider" value="filesystem"/>
-        <entry key="hibernate.search.default.indexBase" value="C:\emk\lucene"/>
+        <entry key="hibernate.search.default.indexBase" value="emk_lucene"/>
     </util:map>
 
     <beans>
