@@ -47,6 +47,12 @@ FirstApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'SearchController'
   });
 
+  $routeProvider.when('/order_items', {
+    templateUrl: 'views/order.html',
+    controller: 'OrderController'
+  });
+
+
   $routeProvider.when('/404', {
     templateUrl: '404.html'
   });

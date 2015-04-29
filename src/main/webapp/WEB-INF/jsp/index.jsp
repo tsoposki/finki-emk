@@ -130,6 +130,7 @@
 <script src="scripts/controllers/login.js"></script>
 <script src="scripts/controllers/browse-category.js"></script>
 <script src="scripts/controllers/search.js"></script>
+<script src="scripts/controllers/order.js"></script>
 <!-- Services definition -->
 <script src="scripts/services/services.js"></script>
 <script src="scripts/services/category.js"></script>
