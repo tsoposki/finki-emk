@@ -10,7 +10,8 @@ FirstApp.directive('bookDisplay', [
     return {
       restrict: 'AE',
       scope: {
-        entity: '='
+        entity: '=',
+        shoppingCart: '='
       },
       compile: function (tElem, attrs) {
 
