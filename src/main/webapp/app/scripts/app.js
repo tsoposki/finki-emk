@@ -20,18 +20,32 @@ var FirstApp = angular.module('avAngularStartupApp', ['ngResource', 'ngRoute',
   'pascalprecht.translate']);
 
 FirstApp.config(['$translateProvider', '$httpProvider', 'settings',
-  function ($translateProvider, $httpProvider, settings) {
+  function($translateProvider, $httpProvider, settings) {
 
-    //$httpProvider.interceptors.push('HRHttpInterceptors');
+    $httpProvider.interceptors.push('HttpInterceptors');
   }]);
 
-FirstApp.run(['$rootScope', '$http', 'crudService', 'settings', function ($rootScope, $http, crudService, settings) {
-  var categoryService = crudService('categories');
-  $rootScope.test = "Testing root scope";
-  $rootScope.categories = categoryService.query();
+FirstApp.run([
+  '$rootScope',
+  '$http',
+  'crudService',
+  '$cookies',
+  function($rootScope,
+           $http,
+           crudService,
+           $cookies) {
 
-  var tempTokenService = $http.get(settings.contextPath + '/data/rest/token').
-    success(function (data, status, headers, config) {
-      console.log('token obtained')
-    })
-}]);
+    var categoryService = crudService('categories');
+
+    $rootScope.categories = categoryService.query();
+
+    $rootScope.authToken = $cookies['token'];
+    if(!$rootScope.authToken) {
+      var tempTokenService = $http.get('/data/rest/token').
+        success(function(data, status, headers, config) {
+          console.log('token obtained')
+        });
+    }
+
+
+  }]);

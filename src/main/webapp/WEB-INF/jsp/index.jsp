@@ -137,6 +137,7 @@
 <script src="scripts/services/crud.js"></script>
 <script src="scripts/services/user.js"></script>
 <script src="scripts/services/books.js"></script>
+<script src="scripts/services/orders.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>
