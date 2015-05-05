@@ -4,7 +4,8 @@
 FirstApp.constant('settings', {
   contextPath: _contextPath,
   dateFormats: ['DD-MM', 'DD-MM-YY', 'DD-MM-YYYY', 'DD-MM-YYYY HH:mm'],
-  useAuthTokenHeader: true
+  useAuthTokenHeader: true,
+  language: 'mk'
 });
 
 FirstApp.value('version', '0.1');

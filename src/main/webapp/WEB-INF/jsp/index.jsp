@@ -131,8 +131,8 @@
 <script src="scripts/controllers/browse-category.js"></script>
 <script src="scripts/controllers/search.js"></script>
 <script src="scripts/controllers/order.js"></script>
+<script src="scripts/controllers/language.js"></script>
 <!-- Services definition -->
-<script src="scripts/services/services.js"></script>
 <script src="scripts/services/category.js"></script>
 <script src="scripts/services/crud.js"></script>
 <script src="scripts/services/user.js"></script>
@@ -147,3 +147,4 @@
 </body>
 
 </html>
+
