@@ -1,12 +1,10 @@
 package mk.ukim.finki.wp.web.resources;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.security.TokenTransfer;
 import mk.ukim.finki.wp.security.TokenUtils;
-
+import mk.ukim.finki.wp.security.UserTransfer;
+import mk.ukim.finki.wp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,12 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -36,6 +34,9 @@ public class UserResource {
   @Qualifier("authenticationManager")
   private AuthenticationManager authManager;
 
+  @Autowired
+  private UserService service;
+
   /**
    * Authenticates a user and creates an authentication token.
    *
@@ -46,15 +47,15 @@ public class UserResource {
   @RequestMapping(value = "/user/authenticate", method = RequestMethod.POST, produces = "application/json")
   @ResponseBody
   public TokenTransfer authenticate(
-          @RequestParam("username") String username,
-          @RequestParam("password") String password,
-          @RequestParam("rememberMe") boolean rememberMe,
-          HttpServletRequest request, HttpServletResponse response) {
+    @RequestParam("username") String username,
+    @RequestParam("password") String password,
+    @RequestParam("rememberMe") boolean rememberMe,
+    HttpServletRequest request, HttpServletResponse response) {
 
     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-            username, password);
+      username, password);
     Authentication authentication = this.authManager
-            .authenticate(authenticationToken);
+      .authenticate(authenticationToken);
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		/*
@@ -89,7 +90,25 @@ public class UserResource {
     cookie.setMaxAge(TOKEN_DURATION);
     cookie.setPath(request.getContextPath());
     response.addCookie(cookie);
+  }
 
+  @RequestMapping(value = "/user", method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  public UserTransfer getUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Authentication authentication = SecurityContextHolder.getContext()
+      .getAuthentication();
+    Object principal = authentication.getPrincipal();
+    if (principal instanceof String
+      && ((String) principal).equals("anonymousUser")) {
+      response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+    if (principal instanceof UserDetails) {
+
+      UserDetails userDetails = (UserDetails) principal;
+      User user = service.findByUsername(userDetails.getUsername());
+      return new UserTransfer(user.getUsername(), user.getRole().toString());
+    }
+    return null;
   }
 
 }
