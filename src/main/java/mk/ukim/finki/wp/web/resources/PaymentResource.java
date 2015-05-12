@@ -4,9 +4,11 @@ import com.paypal.api.payments.Address;
 import com.paypal.api.payments.CreditCard;
 import com.paypal.api.payments.Payment;
 import mk.ukim.finki.wp.model.Category;
+import mk.ukim.finki.wp.model.EmailMessage;
 import mk.ukim.finki.wp.model.OrderItem;
 import mk.ukim.finki.wp.service.CategoryService;
 import mk.ukim.finki.wp.service.OrderItemService;
+import mk.ukim.finki.wp.service.mail.EmailNotificationService;
 import mk.ukim.finki.wp.service.payment.PaymentService;
 import mk.ukim.finki.wp.web.CrudResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,11 @@ public class PaymentResource {
 
   @Autowired
   private PaymentService paymentService;
+
+
+  @Autowired
+  private EmailNotificationService emailNotificationService;
+
 
   @Autowired
   private OrderItemService orderItemService;
@@ -56,6 +63,18 @@ public class PaymentResource {
     return paymentService.executeCreditCardPayment(billingAddress,
       creditCard,
       items);
+  }
+
+  @RequestMapping("send_email_test")
+  public void sendEmail() {
+    EmailMessage message = EmailMessage.create()
+      .subject("test email")
+      .to("riste.stojanov@finki.ukim.mk")
+      .template("test_email.vm")
+      .addToModel("name", "Ристе")
+      .addToModel("number", 12345);
+
+    emailNotificationService.sendEmail(message);
   }
 
 }
