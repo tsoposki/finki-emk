@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/data/rest/categories")
+@RequestMapping("api/data/rest/categories")
 public class CategoryResource extends
 		CrudResource<Category, CategoryService> {
 

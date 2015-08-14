@@ -1,4 +1,4 @@
-FirstApp.controller('BookController',
+WebInvoicingApp.controller('BookController',
   [
     '$scope',
     'crudService',
@@ -47,7 +47,7 @@ FirstApp.controller('BookController',
                 .pop(
                 'error',
                 'Deleting error',
-                "Ne moze da se izbrise objektot. Postoi drug objekt so nadvoresen kluc koj pokazuva kon nego!");
+                'Ne moze da se izbrise objektot. Postoi drug objekt so nadvoresen kluc koj pokazuva kon nego!');
             }
           });
 

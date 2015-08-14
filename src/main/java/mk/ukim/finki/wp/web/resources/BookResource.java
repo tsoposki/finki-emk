@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/data/rest/books")
+@RequestMapping("api/data/rest/books")
 public class BookResource extends CrudResource<Book, BookService> {
 
     @Autowired

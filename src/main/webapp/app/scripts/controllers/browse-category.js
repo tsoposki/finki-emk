@@ -2,7 +2,7 @@
  * Created by riste_000 on 3/18/2015.
  */
 
-FirstApp.controller('BrowseCategoryController', [
+WebInvoicingApp.controller('BrowseCategoryController', [
   '$scope',
   'crudService',
   '$routeParams',

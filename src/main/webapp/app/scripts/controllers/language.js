@@ -1,4 +1,4 @@
-FirstApp.controller('LanguageController', [
+WebInvoicingApp.controller('LanguageController', [
   '$scope',
   '$translate',
   '$location',

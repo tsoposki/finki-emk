@@ -1,9 +1,9 @@
 /*
  * Directive for generic combo (select)
- * 
+ *
  */
 
-FirstApp.directive('combo', [
+WebInvoicingApp.directive('combo', [
     'crudService',
     '$injector',
     function(crudService) {
@@ -30,13 +30,13 @@ FirstApp.directive('combo', [
           onChange: '=',
           primitive: '=',
           multiple: '=',
-          afterInit: '=', 
+          afterInit: '=',
           allowClear: '='
         },
         compile: function(tElem, attrs) {
 
-          if (attrs.comboRequired == "true") {
-            tElem[0].children[0].children[1].setAttribute("required", true);
+          if (attrs.comboRequired == 'true') {
+            tElem[0].children[0].children[1].setAttribute('required', true);
           }
 
           return function(scope, elem, attrs) {

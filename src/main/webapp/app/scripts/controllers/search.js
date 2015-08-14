@@ -2,7 +2,7 @@
  * Created by riste_000 on 4/8/2015.
  */
 
-FirstApp.controller('SearchController', [
+WebInvoicingApp.controller('SearchController', [
   '$scope',
   '$routeParams',
   '$location',

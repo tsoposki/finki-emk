@@ -1,4 +1,4 @@
-FirstApp.controller('OrderController',
+WebInvoicingApp.controller('OrderController',
   [
     '$scope',
     'Order',

@@ -9,10 +9,40 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/spring/security-config-static.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-errors-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/datasource-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/security-db-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-core-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/mail/mail-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/security-rest-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/business-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/security-cas-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/tools-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-view-config.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/security-config.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+    <facet type="JRebel" name="JRebel">
+      <configuration>
+        <option name="autosync" value="false" />
+        <option name="deleteUnindexed" value="true" />
+        <option name="httpAuthEnabled" value="false" />
+        <option name="httpPassword" />
+        <option name="httpUsername" />
+        <option name="manualXML" value="false" />
+        <option name="masterModuleName" />
+        <option name="remotingEnabled" value="false" />
+        <option name="scanAllFiles" value="false" />
+        <option name="secure" value="true" />
+        <option name="url" />
+        <option name="xmlDir" />
       </configuration>
     </facet>
   </component>
@@ -22,7 +52,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -38,7 +67,7 @@
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.template:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.docx:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.freemarker:1.0.5" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.22" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.23" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.template.velocity:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: oro:oro:2.0.8" level="project" />
     <orderEntry type="library" name="Maven: fr.opensagres.xdocreport:fr.opensagres.xdocreport.document.odt:1.0.5" level="project" />

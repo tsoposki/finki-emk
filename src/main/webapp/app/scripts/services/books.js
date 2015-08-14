@@ -1,17 +1,17 @@
 /*
  * Generic CRUD resource REST service
  */
-FirstApp.factory('BookService', ['$resource', 'settings', function($resource, settings) {
+WebInvoicingApp.factory('BookService', ['$resource', 'settings', function($resource, settings) {
 
   return $resource('/data/rest/books/:id', {}, {
     findPromoted: {
       method: 'GET',
-      url: "/data/rest/books/promoted",
+      url: '/data/rest/books/promoted',
       isArray: true
     },
     findByCategory: {
       method: 'GET',
-      url: "/data/rest/books/by_category/:id",
+      url: '/data/rest/books/by_category/:id',
       isArray: true
     },
     search: {
@@ -21,7 +21,7 @@ FirstApp.factory('BookService', ['$resource', 'settings', function($resource, se
     },
     paged: {
       method: 'GET',
-      url: "/data/rest/books/paged"
+      url: '/data/rest/books/paged'
     }
   });
 

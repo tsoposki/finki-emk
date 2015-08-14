@@ -1,4 +1,4 @@
-FirstApp.controller('CityController', [ '$scope', 'crudService',
+WebInvoicingApp.controller('CityController', [ '$scope', 'crudService',
 		function($scope, crudService) {
 			var service = crudService('cities');
 

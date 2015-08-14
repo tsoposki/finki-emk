@@ -1,27 +1,27 @@
 'use strict';
 
 
-FirstApp.constant('settings', {
-  contextPath: _contextPath,
+WebInvoicingApp.constant('settings', {
+  //contextPath: _contextPath,
   dateFormats: ['DD-MM', 'DD-MM-YY', 'DD-MM-YYYY', 'DD-MM-YYYY HH:mm'],
   useAuthTokenHeader: true,
   language: 'mk'
 });
 
-FirstApp.value('version', '0.1');
+WebInvoicingApp.value('version', '0.1');
 
 // register the interceptor as a service
 
-FirstApp.factory('HttpInterceptors', function($q, $location, $rootScope,
+WebInvoicingApp.factory('HttpInterceptors', function($q, $location, $rootScope,
   $filter, toaster, settings) {
   return {
     'request': function(config) {
       // Prepend context path to each request to absolute path
-      if (config.url.length > 0) {
-        if (config.url.charAt(0) == "/") {
-          config.url = settings.contextPath + config.url;
-        }
-      }
+      //if (config.url.length > 0) {
+      //  if (config.url.charAt(0) == "/") {
+      //    config.url = settings.contextPath + config.url;
+      //  }
+      //}
       // Add token in each request header
       var authToken = $rootScope.authToken;
       if (angular.isDefined(authToken)) {

@@ -10,7 +10,7 @@
  * @description # MainCtrl Controller of the avAngularStartupApp
  */
 
-FirstApp.controller('MainCtrl', ['$scope', 'BookService',
+WebInvoicingApp.controller('MainCtrl', ['$scope', 'BookService',
   function ($scope, BookService) {
     $scope.promotedBooks = BookService.findPromoted();
   }]);

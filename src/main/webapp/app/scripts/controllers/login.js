@@ -1,4 +1,4 @@
-FirstApp.controller('LoginController', [
+WebInvoicingApp.controller('LoginController', [
   '$scope',
   '$rootScope',
   '$location',

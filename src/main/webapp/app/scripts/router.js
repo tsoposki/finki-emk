@@ -1,5 +1,5 @@
 /**
- * @ngdoc here we are configuring the module exposed through the FirstApp
+ * @ngdoc here we are configuring the module exposed through the WebInvoicingApp
  *        variable. The method receives an array that has a function as a last
  *        argument. Here, the angular inject the dependencies defined as strings
  *        in the array to the corresponding elements in the function. <br/> The
@@ -10,7 +10,7 @@
  *        through the $scope.
  * @see https://docs.angularjs.org/guide/di
  */
-FirstApp.config(['$routeProvider', function ($routeProvider) {
+WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'views/main.html',
     controller: 'MainCtrl'

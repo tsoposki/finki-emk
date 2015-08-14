@@ -13,7 +13,6 @@ public class RestErrorHandler {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public void processValidationError(Exception ex) {
-
 		ex.printStackTrace();
 	}
 

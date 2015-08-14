@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/data/rest/order_items")
+@RequestMapping("api/data/rest/order_items")
 public class OrderItemResource extends
         CrudResource<OrderItem, OrderItemService> {
 

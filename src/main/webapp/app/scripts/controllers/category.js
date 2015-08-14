@@ -1,4 +1,4 @@
-FirstApp.controller('CategoryController', [ '$scope', 'crudService',
+WebInvoicingApp.controller('CategoryController', [ '$scope', 'crudService',
 		function($scope, crudService) {
 
       var Category = crudService('categories');

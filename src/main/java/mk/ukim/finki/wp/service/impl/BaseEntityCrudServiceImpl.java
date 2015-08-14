@@ -17,7 +17,8 @@ public abstract class BaseEntityCrudServiceImpl<T extends BaseEntity, R extends 
 	protected abstract R getRepository();
 
 	@Override
-	public T save(T entity) {
+	public T save(T entity)
+	{
 		return getRepository().save(entity);
 	}
 
@@ -32,7 +33,8 @@ public abstract class BaseEntityCrudServiceImpl<T extends BaseEntity, R extends 
 	}
 
 	@Override
-	public List<T> findAll() {
+	public List<T> findAll()
+	{
 		return getRepository().findAll();
 	}
 
@@ -77,12 +79,14 @@ public abstract class BaseEntityCrudServiceImpl<T extends BaseEntity, R extends 
 	}
 
 	@Override
-	public T findOne(Long id) {
+	public T findOne(Long id)
+	{
 		return getRepository().findOne(id);
 	}
 
 	@Override
-	public T findOne(Specification<T> spec) {
+	public T findOne(Specification<T> spec)
+	{
 		return getRepository().findOne(spec);
 	}
 

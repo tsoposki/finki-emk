@@ -16,56 +16,56 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public abstract class CrudResource<T extends BaseEntity, S extends BaseEntityCrudService<T>> {
 
-	public abstract S getService();
+    public abstract S getService();
 
-	@RequestMapping(value = "/import", method = RequestMethod.POST, produces = "application/json")
-	public void importEntities(@RequestBody @Valid List<T> entities,
-			HttpServletRequest request, HttpServletResponse response) {
-		for (T entity : entities) {
-			getService().save(entity);
-		}
-	}
+    @RequestMapping(value = "/import", method = RequestMethod.POST, produces = "application/json")
+    public void importEntities(@RequestBody @Valid List<T> entities,
+                               HttpServletRequest request, HttpServletResponse response) {
+        for (T entity : entities) {
+            getService().save(entity);
+        }
+    }
 
-	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public T create(@RequestBody @Valid T entity, HttpServletRequest request,
-			HttpServletResponse response) {
-		getService().save(entity);
-		return entity;
-	}
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    public T create(@RequestBody @Valid T entity, HttpServletRequest request,
+                    HttpServletResponse response) {
+        getService().save(entity);
+        return entity;
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
-	@Deprecated
-	public void edit(@PathVariable Long id, @RequestBody @Valid T jsonEntity,
-			HttpServletRequest request, HttpServletResponse response) {
-		T persistentEntity = getService().findOne(id);
-		copyFields(jsonEntity, persistentEntity);
-		getService().save(persistentEntity);
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
+    @Deprecated
+    public void edit(@PathVariable Long id, @RequestBody @Valid T jsonEntity,
+                     HttpServletRequest request, HttpServletResponse response) {
+        T persistentEntity = getService().findOne(id);
+        copyFields(jsonEntity, persistentEntity);
+        getService().save(persistentEntity);
+    }
 
-	private void copyFields(T from, T to) {
-		// TODO Auto-generated method stub
+    private void copyFields(T from, T to) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public List<T> getAll() {
-		return getService().findAll();
-	}
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public List<T> getAll() {
+        return getService().findAll();
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public T get(@PathVariable Long id, HttpServletRequest request,
-			HttpServletResponse response) {
-		T entity = getService().findOne(id);
-		if (entity == null) {
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		}
-		return entity;
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public T get(@PathVariable Long id, HttpServletRequest request,
+                 HttpServletResponse response) {
+        T entity = getService().findOne(id);
+        if (entity == null) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+        return entity;
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
-	public void delete(@PathVariable Long id, HttpServletRequest request,
-			HttpServletResponse response) {
-		getService().delete(id);
-	}
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public void delete(@PathVariable Long id, HttpServletRequest request,
+                       HttpServletResponse response) {
+        getService().delete(id);
+    }
 
 }

@@ -13,13 +13,13 @@
  *       directive
  * @description # avAngularStartupApp Main module of the application.
  */
-var FirstApp = angular.module('avAngularStartupApp', ['ngResource', 'ngRoute',
+var WebInvoicingApp = angular.module('webInvoicingApp', ['ngResource', 'ngRoute',
   'ngAnimate', 'ngTable', 'ngTableExport', 'ngCookies',
   'chieffancypants.loadingBar', 'ui.bootstrap', 'ui.select2',
   'mgcrea.ngStrap', 'toaster', 'angularFileUpload',
   'pascalprecht.translate']);
 
-FirstApp.config(['$translateProvider', '$httpProvider', 'settings',
+WebInvoicingApp.config(['$translateProvider', '$httpProvider', 'settings',
   function($translateProvider, $httpProvider, settings) {
 
     $httpProvider.interceptors.push('HttpInterceptors');
@@ -36,7 +36,7 @@ FirstApp.config(['$translateProvider', '$httpProvider', 'settings',
 
   }]);
 
-FirstApp.run([
+WebInvoicingApp.run([
   '$rootScope',
   '$http',
   '$cookies',

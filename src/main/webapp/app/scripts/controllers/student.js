@@ -1,4 +1,4 @@
-FirstApp.controller('StudentController', ['$scope', 'Grade',
+WebInvoicingApp.controller('StudentController', ['$scope', 'Grade',
     function($scope, Grade) {
       $scope.grades = Grade.getGradesAsArray();
 
@@ -12,7 +12,7 @@ FirstApp.controller('StudentController', ['$scope', 'Grade',
         $scope.grade = {};
         $scope.grades = Grade.getGradesAsArray();
       };
-      
+
       $scope.removeGrade = function(g){
         Grade.removeGrade(g.subject);
         $scope.grades = Grade.getGradesAsArray();

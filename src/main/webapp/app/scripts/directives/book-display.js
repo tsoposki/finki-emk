@@ -3,7 +3,7 @@
  *
  */
 
-FirstApp.directive('bookDisplay', [
+WebInvoicingApp.directive('bookDisplay', [
   'crudService',
   '$location',
   function (crudService, $location) {

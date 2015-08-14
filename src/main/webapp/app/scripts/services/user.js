@@ -1,5 +1,6 @@
+'use strict';
 
-FirstApp.factory('UserService', function($resource) {
+WebInvoicingApp.factory('UserService', function($resource) {
 
 	return $resource('/data/rest/user/:action', {}, {
 		authenticate : {
