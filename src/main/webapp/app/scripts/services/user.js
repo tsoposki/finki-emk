@@ -2,7 +2,7 @@
 
 WebInvoicingApp.factory('UserService', function($resource) {
 
-	return $resource('/data/rest/user/:action', {}, {
+	return $resource('api/data/rest/user/:action', {}, {
 		authenticate : {
 			method : 'POST',
 			params : {

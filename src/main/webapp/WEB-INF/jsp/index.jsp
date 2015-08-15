@@ -132,6 +132,7 @@
 <script src="scripts/controllers/search.js"></script>
 <script src="scripts/controllers/order.js"></script>
 <script src="scripts/controllers/language.js"></script>
+<script src="scripts/controllers/item.js"></script>
 <!-- Services definition -->
 <script src="scripts/services/category.js"></script>
 <script src="scripts/services/crud.js"></script>

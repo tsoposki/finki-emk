@@ -31,6 +31,10 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'LoginController'
   });
 
+  $routeProvider.when('/dashboard', {
+
+  });
+
 
   $routeProvider.when('/categories', {
     templateUrl: 'views/category.html',
@@ -40,6 +44,11 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/books/:id?', {
     templateUrl: 'views/book.html',
     controller: 'BookController'
+  });
+
+  $routeProvider.when('/items/:id?', {
+    templateUrl: 'views/item.html',
+    controller: 'ItemController'
   });
 
   $routeProvider.when('/search', {

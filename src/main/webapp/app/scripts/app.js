@@ -9,9 +9,9 @@
  *        dependency in order to provide partial content inclusion through the
  *        routes
  * @see router.js for more information
- * @name avAngularStartupApp - the name of the module used in the ng-app
+ * @name webInvoicingApp - the name of the module used in the ng-app
  *       directive
- * @description # avAngularStartupApp Main module of the application.
+ * @description # webInvoicingApp Main module of the application.
  */
 var WebInvoicingApp = angular.module('webInvoicingApp', ['ngResource', 'ngRoute',
   'ngAnimate', 'ngTable', 'ngTableExport', 'ngCookies',

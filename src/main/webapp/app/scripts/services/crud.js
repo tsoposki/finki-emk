@@ -3,14 +3,14 @@
  */
 WebInvoicingApp.factory('crudService', ['$resource', 'settings', function($resource, settings) {
   return function(type) {
-    return $resource('/data/rest/' + type + '/:id', {}, {
+    return $resource('api/data/rest/' + type + '/:id', {}, {
       import: {
         method: 'POST',
-        url: '/data/rest/' + type + '/import'
+        url: 'api/data/rest/' + type + '/import'
       },
       paged: {
         method: 'GET',
-        url: '/data/rest/' + type + '/paged'
+        url: 'api/data/rest/' + type + '/paged'
       }
     });
   };
