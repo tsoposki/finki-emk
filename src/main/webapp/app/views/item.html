@@ -5,25 +5,7 @@
         Креирај артикл
       </button>
       <hr>
-      <div class="list-group hidden-xs hidden-sm">
-        <button
-          class="list-group-item"
-          ng-class="{'active':selectedCategory === 'all'}"
-          ng-click="getItems(-1); selectedCategory = 'all'">
-          Сите </button>
-        <button
-          class="list-group-item"
-          ng-class="{'active':selectedCategory === 'services'}"
-          ng-click="getItems(2); selectedCategory = 'services'">
-          Услуги
-        </button>
-        <button
-          class="list-group-item"
-          ng-class="{'active':selectedCategory === 'products'}"
-          ng-click="getItems(1); selectedCategory = 'products'">
-          Производи
-        </button>
-      </div>
+
     </div>
     <div class="col-md-10">
       <div class="panel panel-default masterPanel">

@@ -29,4 +29,6 @@ public class Company extends BaseCompany {
     public void setPartners(List<Partner> partners) {
         this.partners = partners;
     }
+
+
 }

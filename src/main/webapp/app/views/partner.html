@@ -1,0 +1,226 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createEntityModal">
+        Креирај партнер
+      </button>
+      <hr>
+      <div class="list-group hidden-xs hidden-sm">
+        <button
+          class="list-group-item"
+          ng-class="{'active':selectedCategory === 'all'}"
+          ng-click="getItems(-1); selectedCategory = 'all'">
+          Сите
+        </button>
+        <button
+          class="list-group-item"
+          ng-class="{'active':selectedCategory === 'services'}"
+          ng-click="getItems(2); selectedCategory = 'services'">
+          Услуги
+        </button>
+        <button
+          class="list-group-item"
+          ng-class="{'active':selectedCategory === 'products'}"
+          ng-click="getItems(1); selectedCategory = 'products'">
+          Производи
+        </button>
+      </div>
+    </div>
+    <div class="col-md-10">
+
+      <!-- Search form -->
+      <div class="panel panel-default masterPanel">
+        <label>Search: <input ng-model="search.$"></label>
+        <div class="table-responsive">
+          <table id="partnerTable" class="table table-hover table-striped masterTable">
+            <thead>
+            <tr>
+              <th> Компанија</th>
+              <th> Контакт Лице</th>
+              <th> Адреса</th>
+              <th> Град</th>
+              <th> Телефон</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="entity in entities | filter:search:strict">
+              <td>
+                <a
+                  href=""
+                  data-toggle="modal"
+                  data-target="#entityDetailsModal"
+                  ng-click="showEntity(entity)">
+                  {{ entity.name }}
+                </a>
+              </td>
+              <td>{{ entity.contactPerson }}</td>
+              <td>{{ entity.address.streetName }}</td>
+              <td>{{ entity.address.city.name }}</td>
+              <td>{{ entity.phone}}</td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal fade" id="createEntityModal" tabindex="-1" role="dialog"
+         aria-labelledby="createEntityModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title"> Нов партнер </h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="" class="control-label"> Компанија </label>
+              <input ng-model="entity.name" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Контакт лице </label>
+              <input ng-model="entity.contactPerson" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Адреса </label>
+              <input ng-model="entity.address.streetName" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Поштенски код </label>
+              <input ng-model="entity.address.postalCode" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Град </label>
+              <select
+                class="form-control"
+                ng-options="city as city.name for city in cities"
+                ng-model="entity.address.city">
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Телефон </label>
+              <input ng-model="entity.phone" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Е-маил </label>
+              <input ng-model="entity.email" class="form-control" type="text">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" ng-click="save(entity)" class="btn btn-primary" data-dismiss="modal">
+              Креирај
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="entityDetailsModal" tabindex="-1" role="dialog" aria-labelledby="entityDetailsModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title"> Детали за артиклот </h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="" class="control-label"> Компанија </label>
+              <input
+                ng-model="selectedEntity.name"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Контакт лице </label>
+              <input
+                ng-model="selectedEntity.contactPerson"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Адреса </label>
+              <input
+                ng-model="selectedEntity.address.streetName"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Поштенски код </label>
+              <input
+                ng-model="selectedEntity.address.postalCode"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Град </label>
+              <select
+                class="form-control"
+                ng-disabled="disabled"
+                ng-model="selectedEntity.address.city"
+                ng-options="opt as opt.name for opt in cities track by opt.name">
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Телефон </label>
+              <input
+                ng-model="selectedEntity.phone"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+            <div class="form-group">
+              <label for="" class="control-label"> Е-маил </label>
+              <input
+                ng-model="selectedEntity.email"
+                ng-disabled="disabled"
+                class="form-control"
+                type="text">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button ng-show="disabled" class="btn btn-default pull-left" ng-click="disabled = !disabled"> Измени
+            </button>
+            <button ng-show="!disabled" class="btn btn-default pull-left" ng-click="save(selectedEntity)">
+              Зачувај
+            </button>
+            <button class="btn btn-danger pull-left"
+                    confirmation-needed="Дали сте сигурни дека сакате да го избришете овој артикл?"
+                    ng-click="remove(selectedEntity.id);">
+              Избриши
+            </button>
+            <button type="button" id="closeDetailsModal" class="btn btn-primary" data-dismiss="modal">
+              Затвори
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

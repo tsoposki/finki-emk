@@ -41,6 +41,11 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'CategoryController'
   });
 
+  $routeProvider.when('/cities', {
+    templateUrl: 'views/city.html',
+    controller: 'CityController'
+  });
+
   $routeProvider.when('/books/:id?', {
     templateUrl: 'views/book.html',
     controller: 'BookController'
@@ -49,6 +54,11 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/items/:id?', {
     templateUrl: 'views/item.html',
     controller: 'ItemController'
+  });
+
+  $routeProvider.when('/partners/:id?', {
+    templateUrl: 'views/partner.html',
+    controller: 'PartnerController'
   });
 
   $routeProvider.when('/search', {
