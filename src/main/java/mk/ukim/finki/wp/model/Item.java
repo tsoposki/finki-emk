@@ -1,10 +1,7 @@
 package mk.ukim.finki.wp.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.lucene.analysis.charfilter.HTMLStripCharFilterFactory;
-import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
-import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
-import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +16,8 @@ public class Item extends BaseEntity {
 
     private double price;
 
+    private String username;
+
     @ManyToOne
     private Currency currency;
 
@@ -27,6 +26,9 @@ public class Item extends BaseEntity {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Company company;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Invoice> invoices;
@@ -77,5 +79,21 @@ public class Item extends BaseEntity {
 
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

@@ -1,34 +1,31 @@
 package mk.ukim.finki.wp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "wp_users")
 public class User extends BaseEntity {
 
-	public static enum Role {
-		ROLE_USERS, ROLE_STUDENT, ROLE_PROFESSOR, ROLE_ADMIN
-	}
-
+	@OneToOne
+	private Company company;
 	private String fistName;
-
 	private String lastName;
-
 	@Column(unique = true)
 	private String username;
-
 	private String email;
-
 	@Column(name = "user_password")
 	private String password;
-
 	@Enumerated(EnumType.STRING)
 	@Column(name = "user_role", length = 20, nullable = false)
 	private Role role;
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
 	public String getFistName() {
 		return fistName;
@@ -76,6 +73,10 @@ public class User extends BaseEntity {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public enum Role {
+		ROLE_USERS, ROLE_STUDENT, ROLE_PROFESSOR, ROLE_ADMIN
 	}
 
 }

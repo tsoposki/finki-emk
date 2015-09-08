@@ -1,15 +1,16 @@
 package mk.ukim.finki.wp.web.util;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpServletRequest;
-
 import mk.ukim.finki.wp.model.BaseEntity;
 import mk.ukim.finki.wp.specifications.BaseSpecification;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 public class RequestProcessor {
 	public static Sort sorting(HttpServletRequest request) {
@@ -44,5 +45,28 @@ public class RequestProcessor {
 			}
 		}
 		return result;
+	}
+
+	public static String tempToken(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("temp_token")) {
+				return c.getValue();
+			}
+		}
+		return null;
+	}
+
+	public static String getUsername() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+
+		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();
+		} else {
+			username = principal.toString();
+		}
+
+		return username;
 	}
 }

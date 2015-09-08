@@ -1,5 +1,7 @@
 package mk.ukim.finki.wp.repository;
+
 import mk.ukim.finki.wp.model.Category;
+import mk.ukim.finki.wp.model.Company;
 import mk.ukim.finki.wp.model.Item;
 
 import java.util.List;
@@ -10,4 +12,6 @@ import java.util.List;
 public interface ItemRepository extends JpaSpecificationRepository<Item> {
     List<Item> findByCategoryId(Long id);
     List<Item> findByCategory(Category category);
+
+    List<Item> findByCompany(Company company);
 }

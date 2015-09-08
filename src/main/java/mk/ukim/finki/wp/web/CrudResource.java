@@ -1,18 +1,16 @@
 package mk.ukim.finki.wp.web;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
 import mk.ukim.finki.wp.model.BaseEntity;
 import mk.ukim.finki.wp.service.BaseEntityCrudService;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.util.List;
 
 public abstract class CrudResource<T extends BaseEntity, S extends BaseEntityCrudService<T>> {
 
@@ -30,6 +28,7 @@ public abstract class CrudResource<T extends BaseEntity, S extends BaseEntityCru
     public T create(@RequestBody @Valid T entity, HttpServletRequest request,
                     HttpServletResponse response) {
         getService().save(entity);
+        System.out.println("Created Address from AddressResource");
         return entity;
     }
 

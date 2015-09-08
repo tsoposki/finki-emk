@@ -31,6 +31,11 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'LoginController'
   });
 
+  $routeProvider.when('/register', {
+    templateUrl: 'views/register.html',
+    controller: 'RegisterController'
+  });
+
   $routeProvider.when('/dashboard', {
 
   });

@@ -6,6 +6,8 @@ import mk.ukim.finki.wp.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InvoiceServiceImpl extends
         BaseEntityCrudServiceImpl<Invoice, InvoiceRepository> implements
@@ -19,4 +21,8 @@ public class InvoiceServiceImpl extends
         return repository;
     }
 
+    @Override
+    public List<Invoice> findByUsername(String s) {
+        return getRepository().findByUsername(s);
+    }
 }

@@ -103,19 +103,26 @@
 <script src="bower_components/angular-ui-select2/src/select2.js"></script>
 <script src="bower_components/bootstrap-markdown/js/bootstrap-markdown.js"></script>
 <script src="bower_components/datetimepicker/jquery.datetimepicker.js"></script>
-<script src="bower_components/jquery-textcomplete/dist/jquery.textcomplete.min.js"></script>
+<script src="bower_components/jquery-textcomplete/dist/jquery.textcomplete.js"></script>
 <script src="bower_components/momentjs/moment.js"></script>
+<script src="bower_components/marked/lib/marked.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/nvd3/nv.d3.js"></script>
+<script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
 <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
 <script src="bower_components/ng-table/ng-table.js"></script>
 <script src="bower_components/ng-table-export/ng-table-export.js"></script>
 <script src="bower_components/ngQuickDate/dist/ng-quick-date.js"></script>
+<script src="bower_components/angular-charts/dist/angular-charts.js"></script>
+<script src="bower_components/d3-tip/index.js"></script>
+<script src="bower_components/webcam-directive/dist/webcam.min.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <!-- These scripts hold the code of the application -->
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <!-- The definition and the configuration of the application module -->
-
 <script src="scripts/app.js"></script>
 <!-- The route configuration -->
 <script src="scripts/router.js"></script>
@@ -133,12 +140,15 @@
 <script src="scripts/controllers/order.js"></script>
 <script src="scripts/controllers/language.js"></script>
 <script src="scripts/controllers/item.js"></script>
+<script src="scripts/controllers/partner.js"></script>
+<script src="scripts/controllers/register.js"></script>
 <!-- Services definition -->
 <script src="scripts/services/category.js"></script>
 <script src="scripts/services/crud.js"></script>
 <script src="scripts/services/user.js"></script>
 <script src="scripts/services/books.js"></script>
 <script src="scripts/services/orders.js"></script>
+<script src="scripts/services/items.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>

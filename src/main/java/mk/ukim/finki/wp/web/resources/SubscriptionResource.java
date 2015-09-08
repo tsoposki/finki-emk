@@ -1,23 +1,21 @@
 package mk.ukim.finki.wp.web.resources;
 
-import mk.ukim.finki.wp.model.Address;
-import mk.ukim.finki.wp.service.AddressService;
+import mk.ukim.finki.wp.model.Subscription;
+import mk.ukim.finki.wp.service.SubscriptionService;
 import mk.ukim.finki.wp.web.CrudResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/data/rest/addresses")
-public class AddressResource extends
-        CrudResource<Address, AddressService> {
+@RequestMapping("api/subscription")
+public class SubscriptionResource extends CrudResource<Subscription, SubscriptionService> {
 
     @Autowired
-    private AddressService service;
+    private SubscriptionService service;
 
     @Override
-    public AddressService getService() {
+    public SubscriptionService getService() {
         return service;
     }
-
 }

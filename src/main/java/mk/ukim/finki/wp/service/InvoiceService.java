@@ -2,8 +2,11 @@ package mk.ukim.finki.wp.service;
 
 import mk.ukim.finki.wp.model.Invoice;
 
+import java.util.List;
+
 /**
  * Created by Trajche on 8/15/2015.
  */
 public interface InvoiceService extends BaseEntityCrudService<Invoice> {
+    List<Invoice> findByUsername(String s);
 }

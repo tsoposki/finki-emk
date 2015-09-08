@@ -2,7 +2,10 @@ package mk.ukim.finki.wp.model;
 
 import org.joda.time.DateTime;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -14,6 +17,7 @@ import java.util.List;
 public class Invoice extends BaseEntity{
     private DateTime issueDate;
     private DateTime maturityDate;
+    private String username;
 
     @ManyToOne
     private Partner partner;
@@ -74,5 +78,13 @@ public class Invoice extends BaseEntity{
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -99,7 +100,7 @@ public class UserResource {
                 .getAuthentication();
         Object principal = authentication.getPrincipal();
         if (principal instanceof String
-                && ((String) principal).equals("anonymousUser")) {
+                && principal.equals("anonymousUser")) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
         if (principal instanceof UserDetails) {
@@ -109,6 +110,16 @@ public class UserResource {
             return new UserTransfer(user.getUsername(), user.getRole().toString());
         }
         return null;
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.POST, produces = "application/json")
+    public User create(@RequestBody @Valid User entity, HttpServletRequest request,
+                       HttpServletResponse response) {
+
+        entity.setRole(User.Role.ROLE_USERS);
+        service.save(entity);
+        System.out.println("Created new user!");
+        return entity;
     }
 
 }
