@@ -21,6 +21,7 @@ WebInvoicingApp.controller('NewInvoiceController',
         issueDate: 0,
         maturityDate: 0
       };
+
       $scope.issueDate = {};
       $scope.maturityDate = {};
       $scope.totalPrice = 0;
@@ -51,8 +52,9 @@ WebInvoicingApp.controller('NewInvoiceController',
           totalTax += (invoiceItem.item.tax/100) * invoiceItem.item.price * invoiceItem.quantity;
         }
 
-        $scope.totalPrice = totalPrice;
-        $scope.totalTax = totalTax;
+        $scope.newInvoice.totalPrice = totalPrice;
+        $scope.newInvoice.totalTax = totalTax;
+
       }
 
       $scope.createInvoice = function() {

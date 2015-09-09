@@ -47,17 +47,13 @@
 
 
   <div class="">
-    <div class="row row-offcanvas row-offcanvas-left">
-      <!-- sidebar -->
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-        <div ng-include="'nav/side.html'"></div>
-      </div>
+    <div class="">
 
       <!--
 	    		ng-view is directive that declares that the element will be
 	    		place holder for the partial files included through the router
 	    	 -->
-      <div ng-view class="col-xs-12 col-sm-9"></div>
+      <div ng-view class="col-xs-12"></div>
     </div>
   </div>
 
@@ -153,6 +149,7 @@
 <script src="scripts/services/books.js"></script>
 <script src="scripts/services/orders.js"></script>
 <script src="scripts/services/items.js"></script>
+<script src="scripts/services/invoice.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>

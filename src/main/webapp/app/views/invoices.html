@@ -36,7 +36,7 @@
               <td>{{ invoice.currency.name }}</td>
               <td>{{ invoice.totalTax | number:2 }}</td>
               <td>{{ invoice.totalPrice | number:2 }}</td>
-              <td>{{ invoice.totalTax + invoice.totalTax | number:2 }}</td>
+              <td>{{ invoice.totalTax + invoice.totalPrice | number:2 }}</td>
             </tr>
 
             </tbody>

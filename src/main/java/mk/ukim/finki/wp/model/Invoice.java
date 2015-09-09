@@ -30,6 +30,9 @@ public class Invoice extends BaseEntity{
     @OneToMany(fetch=FetchType.EAGER)
     private List<InvoiceItem> invoiceItems;
 
+    private Double totalPrice;
+    private Double totalTax;
+
     public Partner getPartner() {
         return partner;
     }
@@ -94,5 +97,21 @@ public class Invoice extends BaseEntity{
 
     public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
         this.invoiceItems = invoiceItems;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Double getTotalTax() {
+        return totalTax;
+    }
+
+    public void setTotalTax(Double totalTax) {
+        this.totalTax = totalTax;
     }
 }

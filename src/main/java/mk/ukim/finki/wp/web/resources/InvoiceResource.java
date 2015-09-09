@@ -92,6 +92,7 @@ public class InvoiceResource extends
 
         if (user.getCompany() != null) {
             Invoice entity = getService().findOne(id);
+            System.out.println(entity);
 
             if (entity == null) {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);

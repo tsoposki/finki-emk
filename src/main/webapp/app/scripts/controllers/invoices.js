@@ -5,10 +5,27 @@ WebInvoicingApp.controller('InvoicesController',
     '$location',
     function ($scope, crudService, $location) {
       var service = crudService('invoices');
+      $scope.entities = service.query(function(data) {
+        console.log('finished loading');
+        var totalPrice = 0;
+        var totalTax = 0;
 
-      $scope.disabled = true;
+        if($scope.entities.invoiceItems) {
+          for(var i=0; i<$scope.entities.invoiceItems.length; i++) {
+            var invoiceItem = $scope.entities.invoiceItems[i];
+            totalPrice += invoiceItem.item.price * invoiceItem.quantity;
+            totalTax += (invoiceItem.item.tax/100) * invoiceItem.item.price * invoiceItem.quantity;
 
-      $scope.entities = service.query();
+            $scope.entities[i].totalPrice = totalPrice;
+            $scope.entities[i].totalTax = totalTax;
+          }
+        }
+
+      });
+
+      $scope.$watch('entities', function(newValue, oldValue) {
+
+      });
 
       $scope.showInvoice = function(id) {
         $location.path("/invoice/" + id);

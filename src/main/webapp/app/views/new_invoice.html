@@ -145,21 +145,21 @@
                 <td class="thick-line"></td>
                 <td class="thick-line"></td>
                 <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                <td class="thick-line text-right">{{ totalPrice }}</td>
+                <td class="thick-line text-right">{{ newInvoice.totalPrice }}</td>
               </tr>
               <tr>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line text-center"><strong>Tax</strong></td>
-                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ totalTax }} </td>
+                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ newInvoice.totalTax }} </td>
               </tr>
               <tr>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line text-center"><strong>Total</strong></td>
-                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ totalPrice + totalTax }}</td>
+                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ newInvoice.totalPrice + newInvoice.totalTax }}</td>
               </tr>
               <tr>
                 <td class="no-line"></td>
