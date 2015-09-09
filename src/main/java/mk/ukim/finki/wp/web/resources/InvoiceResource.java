@@ -10,10 +10,7 @@ import mk.ukim.finki.wp.web.CrudResource;
 import mk.ukim.finki.wp.web.util.RequestProcessor;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,6 +78,28 @@ public class InvoiceResource extends
         if (user.getCompany() != null) {
             System.out.println("getting invoices");
             return service.findByCompany(user.getCompany());
+        }
+
+        return null;
+    }
+
+    @Override
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Invoice get(@PathVariable Long id, HttpServletRequest request,
+                 HttpServletResponse response) {
+        String username = RequestProcessor.getUsername();
+        User user = userService.findByUsername(username);
+
+        if (user.getCompany() != null) {
+            Invoice entity = getService().findOne(id);
+
+            if (entity == null) {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+
+            if(entity.getCompany().getId() == user.getCompany().getId()) {
+                return entity;
+            }
         }
 
         return null;

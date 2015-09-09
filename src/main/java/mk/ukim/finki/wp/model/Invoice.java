@@ -27,7 +27,7 @@ public class Invoice extends BaseEntity{
     @ManyToOne
     private Company company;
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER)
     private List<InvoiceItem> invoiceItems;
 
     public Partner getPartner() {
