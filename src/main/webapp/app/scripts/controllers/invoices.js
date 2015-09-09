@@ -14,7 +14,7 @@ WebInvoicingApp.controller('InvoicesController',
           for(var i=0; i<$scope.entities.invoiceItems.length; i++) {
             var invoiceItem = $scope.entities.invoiceItems[i];
             totalPrice += invoiceItem.item.price * invoiceItem.quantity;
-            totalTax += (invoiceItem.item.tax/100) * invoiceItem.item.price * invoiceItem.quantity;
+            totalTax += (invoiceItem.item.tax.value/100) * invoiceItem.item.price * invoiceItem.quantity;
 
             $scope.entities[i].totalPrice = totalPrice;
             $scope.entities[i].totalTax = totalTax;

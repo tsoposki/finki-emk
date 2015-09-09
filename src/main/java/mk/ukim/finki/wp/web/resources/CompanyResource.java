@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.web.resources;
 
 import mk.ukim.finki.wp.model.Company;
 import mk.ukim.finki.wp.service.CompanyService;
+import mk.ukim.finki.wp.service.SubscriptionService;
 import mk.ukim.finki.wp.web.CrudResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +23,9 @@ public class CompanyResource extends
     @Autowired
     private CompanyService service;
 
+    @Autowired
+    private SubscriptionService subscriptionService;
+
     @Override
     public CompanyService getService() {
         return service;
@@ -40,7 +44,9 @@ public class CompanyResource extends
             username = principal.toString();
         }
 
+        entity.setSubscription(subscriptionService.findOne((long)1));
         getService().save(entity);
+
         System.out.println("Created Company from CompanyResource");
         return entity;
     }

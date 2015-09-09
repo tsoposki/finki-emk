@@ -35,7 +35,6 @@
           </p>
         </div>
 
-        <span> {{ issueDate }}</span>
       </div>
 
       <strong>Maturity Date:</strong><br>
@@ -53,7 +52,6 @@
           </p>
         </div>
 
-        <span> {{ maturityDate }}</span>
       </div>
 
 
@@ -135,9 +133,9 @@
               <tr ng-repeat="invoiceItem in newInvoice.invoiceItems">
                 <td>{{ invoiceItem.item.name }}</td>
                 <td class="text-center">{{ invoiceItem.item.currency.name }} {{ invoiceItem.item.price }}</td>
-                <td class="text-center">{{ invoiceItem.item.tax }}%</td>
+                <td class="text-center">{{ invoiceItem.item.tax.value }}%</td>
                 <td class="text-center">{{ invoiceItem.quantity }}</td>
-                <td class="text-right">{{ invoiceItem.item.currency.name }} {{ invoiceItem.item.price * (invoiceItem.item.tax / 100 + 1) * invoiceItem.quantity }}</td>
+                <td class="text-right">{{ invoiceItem.item.currency.name }} {{ invoiceItem.item.price * (invoiceItem.item.tax.value / 100 + 1) * invoiceItem.quantity }}</td>
               </tr>
 
               <tr>

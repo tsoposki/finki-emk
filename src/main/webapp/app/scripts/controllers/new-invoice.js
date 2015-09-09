@@ -7,7 +7,7 @@ WebInvoicingApp.controller('NewInvoiceController',
     function ($scope, crudService, $routeParams, toaster) {
       var itemsService = crudService('items');
       var partnerService = crudService('partners');
-      var paymentService = crudService('paymentTypes');
+      var paymentService = crudService('payment_types');
       var currencyService = crudService('currencies');
       var invoiceService = crudService('invoices');
 
@@ -49,7 +49,7 @@ WebInvoicingApp.controller('NewInvoiceController',
           var invoiceItem = $scope.newInvoice.invoiceItems[i];
 
           totalPrice += invoiceItem.item.price * invoiceItem.quantity;
-          totalTax += (invoiceItem.item.tax/100) * invoiceItem.item.price * invoiceItem.quantity;
+          totalTax += (invoiceItem.item.tax.value/100) * invoiceItem.item.price * invoiceItem.quantity;
         }
 
         $scope.newInvoice.totalPrice = totalPrice;

@@ -57,11 +57,6 @@
     </div>
   </div>
 
-  <div class="footer">
-    <p>
-      <span class="glyphicon glyphicon-heart"></span>from the Web programming team
-    </p>
-  </div>
 </div>
 
 

@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Book Store</a>
+      <a class="navbar-brand" href="#">Web Invoicing</a>
     </div>
     <div class="collapse navbar-collapse">
 
@@ -18,16 +18,19 @@
         <li class="active">
           <a ng-href="{{$root.pateka}}">Почетна</a>
         </li>
-        <li>
+        <li ng-if="$root.user">
+          <a ng-href="#/invoices">Фактури</a>
+        </li>
+        <li ng-if="$root.user">
           <a ng-href="#/partners">Партнери</a>
         </li>
-        <li>
+        <li ng-if="$root.user">
           <a ng-href="#/items">Артикли</a>
         </li>
 
-        <li>
-          <a ng-href="#/order_items">Shopping Cart</a>
-        </li>
+        <!--<li ng-if="$root.user">-->
+          <!--<a ng-href="#/order_items">Shopping Cart</a>-->
+        <!--</li>-->
 
         <li class="dropdown" ng-controller="LanguageController">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -44,6 +47,10 @@
             </li>
 
           </ul>
+        </li>
+
+        <li>
+          <a ng-href="#/register" ng-if="!$root.user">Register</a>
         </li>
 
         <li>

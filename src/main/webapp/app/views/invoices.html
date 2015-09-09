@@ -1,9 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-lg">
-        Креирај фактура
-      </button>
+      <a href="#/new_invoice">
+        <button type="button" class="btn btn-primary btn-lg">
+          Креирај фактура
+        </button>
+      </a>
+
       <hr>
 
     </div>
@@ -27,7 +30,7 @@
               <td>
                 <a
                   href=""
-                  ng-click="showItem(invoice)">
+                  ng-click="showInvoice(invoice.id)">
                   {{ invoice.id }}
                 </a>
               </td>
