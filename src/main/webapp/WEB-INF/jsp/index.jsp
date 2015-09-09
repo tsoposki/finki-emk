@@ -88,6 +88,7 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/jquery-cookie/jquery.cookie.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
 <script src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
@@ -142,6 +143,9 @@
 <script src="scripts/controllers/item.js"></script>
 <script src="scripts/controllers/partner.js"></script>
 <script src="scripts/controllers/register.js"></script>
+<script src="scripts/controllers/new-invoice.js"></script>
+<script src="scripts/controllers/invoice.js"></script>
+<script src="scripts/controllers/invoices.js"></script>
 <!-- Services definition -->
 <script src="scripts/services/category.js"></script>
 <script src="scripts/services/crud.js"></script>

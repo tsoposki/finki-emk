@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-primary btn-lg">
+        Креирај фактура
+      </button>
+      <hr>
+
+    </div>
+    <div class="col-md-10">
+      <div class="panel panel-default masterPanel">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped masterTable">
+            <thead>
+            <tr>
+              <th> Шифра</th>
+              <th> Партнер</th>
+              <th> Тип на плаќање</th>
+              <th> Валута</th>
+              <th> ДДВ</th>
+              <th> Вкупно без ДДВ</th>
+              <th> Вкупно со ДДВ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="invoice in entities">
+              <td>
+                <a
+                  href=""
+                  ng-click="showItem(invoice)">
+                  {{ invoice.id }}
+                </a>
+              </td>
+              <td>{{ invoice.partner.name }}</td>
+              <td>{{ invoice.paymentType.name }}</td>
+              <td>{{ invoice.currency.name }}</td>
+              <td>{{ invoice.totalTax | number:2 }}</td>
+              <td>{{ invoice.totalPrice | number:2 }}</td>
+              <td>{{ invoice.totalTax + invoice.totalTax | number:2 }}</td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

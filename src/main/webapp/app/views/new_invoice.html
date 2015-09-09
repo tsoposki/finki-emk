@@ -1,0 +1,183 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="invoice-title">
+        <h2>New Invoice</h2>
+      </div>
+      <hr>
+
+      <strong>Partner:</strong>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control"
+                    ng-options="partner as partner.name for partner in partners"
+                    ng-model="newInvoice.partner">
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+      <strong>Issue Date:</strong><br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p class="input-group">
+            <input type="date" class="form-control" datepicker-popup ng-model="issueDate" is-open="status.opened"
+                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                  class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
+
+        <span> {{ issueDate }}</span>
+      </div>
+
+      <strong>Maturity Date:</strong><br>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p class="input-group">
+            <input type="date" class="form-control" datepicker-popup ng-model="maturityDate" is-open="status.opened"
+                   min-date="minDate" max-date="maxDate" datepicker-options="dateOptions"
+                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                  class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </p>
+        </div>
+
+        <span> {{ maturityDate }}</span>
+      </div>
+
+
+      <strong>Payment Type:</strong>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control"
+                    ng-options="paymentType as paymentType.name for paymentType in paymentTypes"
+                    ng-model="newInvoice.paymentType">
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <strong>Currency:</strong>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control"
+                    ng-options="currency as currency.name for currency in currencies"
+                    ng-model="newInvoice.currency">
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Order summary</strong></h3>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+              <tr>
+                <td>
+                  <select class="form-control"
+                          ng-options="item as item.name for item in items"
+                          ng-model="newItem.item">
+                  </select>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input class="form-control"
+                           type="number"
+                           placeholder="Quantity"
+                           ng-model="newItem.quantity">
+                  </div>
+
+                </td>
+                <td>
+                  <button type="button"
+                          ng-click="addNewItem()"
+                          class="btn btn-small btn-primary">
+                    Add item
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td><strong>Item</strong></td>
+                <td class="text-center"><strong>Price</strong></td>
+                <td class="text-center"><strong>Tax</strong></td>
+                <td class="text-center"><strong>Quantity</strong></td>
+                <td class="text-right"><strong>Totals</strong></td>
+              </tr>
+              </thead>
+              <tbody>
+
+
+              <!-- foreach ($order->lineItems as $line) or some such thing here -->
+              <tr ng-repeat="item in newInvoice.items">
+                <td>{{ item.name }}</td>
+                <td class="text-center">{{ item.currency.name }} {{ item.price }}</td>
+                <td class="text-center">{{ item.tax }}%</td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-right">{{ item.currency.name }} {{ item.price * (item.tax / 100 + 1) }}</td>
+              </tr>
+
+              <tr>
+                <td class="thick-line"></td>
+                <td class="thick-line"></td>
+                <td class="thick-line"></td>
+                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                <td class="thick-line text-right">{{ totalPrice }}</td>
+              </tr>
+              <tr>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line text-center"><strong>Tax</strong></td>
+                <td class="no-line text-right">{{ item.currency.name }} {{ totalTax }} </td>
+              </tr>
+              <tr>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line text-center"><strong>Total</strong></td>
+                <td class="no-line text-right">{{ item.currency.name }} {{ totalPrice + totalTax }}</td>
+              </tr>
+              <tr>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td class="no-line"></td>
+                <td>
+                  <button class="btn btn-success"
+                          ng-click="createInvoice()">
+                    Create Invoice
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

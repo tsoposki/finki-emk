@@ -1,23 +1,19 @@
 package mk.ukim.finki.wp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.metamodel.binding.CascadeType;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
-
-/**
- * Created by Trajche on 8/14/2015.
- */
+import java.util.Set;
 
 @Entity
 @Table(name = "invoices")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Invoice extends BaseEntity{
-    private DateTime issueDate;
-    private DateTime maturityDate;
-    private String username;
+    private Long issueDate;
+    private Long maturityDate;
 
     @ManyToOne
     private Partner partner;
@@ -28,25 +24,11 @@ public class Invoice extends BaseEntity{
     @ManyToOne
     private Currency currency;
 
+    @ManyToOne
+    private Company company;
 
-    @ManyToMany(mappedBy = "invoices")
-    private List<Item> items;
-
-    public DateTime getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(DateTime issueDate) {
-        this.issueDate = issueDate;
-    }
-
-    public DateTime getMaturityDate() {
-        return maturityDate;
-    }
-
-    public void setMaturityDate(DateTime maturityDate) {
-        this.maturityDate = maturityDate;
-    }
+    @OneToMany
+    private List<InvoiceItem> invoiceItems;
 
     public Partner getPartner() {
         return partner;
@@ -72,19 +54,37 @@ public class Invoice extends BaseEntity{
         this.currency = currency;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public Long getIssueDate() {
+        return issueDate;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setIssueDate(Long issueDate) {
+        this.issueDate = issueDate;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getMaturityDate() {
+        return maturityDate;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setMaturityDate(Long maturityDate) {
+        this.maturityDate = maturityDate;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("IssueDate: ").append(issueDate).append("\n");
+        sb.append("MaturityDate: ").append(maturityDate).append("\n");
+        sb.append("PartnerId: ").append(partner.getId()).append("\n");
+
+        return sb.toString();
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

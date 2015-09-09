@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.service.impl;
 
+import mk.ukim.finki.wp.model.Company;
 import mk.ukim.finki.wp.model.Invoice;
 import mk.ukim.finki.wp.repository.InvoiceRepository;
 import mk.ukim.finki.wp.service.InvoiceService;
@@ -22,7 +23,7 @@ public class InvoiceServiceImpl extends
     }
 
     @Override
-    public List<Invoice> findByUsername(String s) {
-        return getRepository().findByUsername(s);
+    public List<Invoice> findByCompany(Company company) {
+        return getRepository().findByCompany(company);
     }
 }

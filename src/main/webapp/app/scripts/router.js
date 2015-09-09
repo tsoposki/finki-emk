@@ -36,6 +36,21 @@ WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'RegisterController'
   });
 
+  $routeProvider.when('/invoices', {
+    templateUrl: 'views/invoices.html',
+    controller: 'InvoicesController'
+  });
+
+  $routeProvider.when('/invoice/:id', {
+    templateUrl: 'views/invoice.html',
+    controller: 'InvoiceController'
+  });
+
+  $routeProvider.when('/new_invoice', {
+    templateUrl: 'views/new_invoice.html',
+    controller: 'NewInvoiceController'
+  });
+
   $routeProvider.when('/dashboard', {
 
   });

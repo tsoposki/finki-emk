@@ -5,6 +5,7 @@ import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "items")
@@ -15,8 +16,6 @@ public class Item extends BaseEntity {
     private String name;
 
     private double price;
-
-    private String username;
 
     @ManyToOne
     private Currency currency;
@@ -29,9 +28,6 @@ public class Item extends BaseEntity {
 
     @ManyToOne
     private Company company;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Invoice> invoices;
 
     public String getName() {
         return name;
@@ -71,22 +67,6 @@ public class Item extends BaseEntity {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public Company getCompany() {
