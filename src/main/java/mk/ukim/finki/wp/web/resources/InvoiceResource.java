@@ -49,9 +49,8 @@ public class InvoiceResource extends
             List<Invoice> invoices = service.findByCompany(company);
 
             if (invoices.size() < company.getSubscription().getInvoicesLimit()) {
-//                entity.setIssueDate(new DateTime(issueDate));
-//                entity.setMaturityDate(new DateTime(maturityDate));
                 entity.setCompany(company);
+                saveInvoiceItems(entity.getInvoiceItems());
                 getService().save(entity);
                 System.out.println("Created Invoice from InvoiceResource");
                 System.out.printf("Number of partners = %d\n", invoices.size());
@@ -63,6 +62,12 @@ public class InvoiceResource extends
         }
 
         return null;
+    }
+
+    private void saveInvoiceItems(List<InvoiceItem> invoiceItems) {
+        for(InvoiceItem invoiceItem : invoiceItems) {
+            invoiceItemService.save(invoiceItem);
+        }
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")

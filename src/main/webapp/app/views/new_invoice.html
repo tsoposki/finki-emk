@@ -132,12 +132,12 @@
 
 
               <!-- foreach ($order->lineItems as $line) or some such thing here -->
-              <tr ng-repeat="item in newInvoice.items">
-                <td>{{ item.name }}</td>
-                <td class="text-center">{{ item.currency.name }} {{ item.price }}</td>
-                <td class="text-center">{{ item.tax }}%</td>
-                <td class="text-center">{{ item.quantity }}</td>
-                <td class="text-right">{{ item.currency.name }} {{ item.price * (item.tax / 100 + 1) }}</td>
+              <tr ng-repeat="invoiceItem in newInvoice.invoiceItems">
+                <td>{{ invoiceItem.item.name }}</td>
+                <td class="text-center">{{ invoiceItem.item.currency.name }} {{ invoiceItem.item.price }}</td>
+                <td class="text-center">{{ invoiceItem.item.tax }}%</td>
+                <td class="text-center">{{ invoiceItem.quantity }}</td>
+                <td class="text-right">{{ invoiceItem.item.currency.name }} {{ invoiceItem.item.price * (invoiceItem.item.tax / 100 + 1) * invoiceItem.quantity }}</td>
               </tr>
 
               <tr>
@@ -152,14 +152,14 @@
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line text-center"><strong>Tax</strong></td>
-                <td class="no-line text-right">{{ item.currency.name }} {{ totalTax }} </td>
+                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ totalTax }} </td>
               </tr>
               <tr>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line text-center"><strong>Total</strong></td>
-                <td class="no-line text-right">{{ item.currency.name }} {{ totalPrice + totalTax }}</td>
+                <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ totalPrice + totalTax }}</td>
               </tr>
               <tr>
                 <td class="no-line"></td>

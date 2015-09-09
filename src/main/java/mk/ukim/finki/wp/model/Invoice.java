@@ -87,4 +87,12 @@ public class Invoice extends BaseEntity{
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    public List<InvoiceItem> getInvoiceItems() {
+        return invoiceItems;
+    }
+
+    public void setInvoiceItems(List<InvoiceItem> invoiceItems) {
+        this.invoiceItems = invoiceItems;
+    }
 }

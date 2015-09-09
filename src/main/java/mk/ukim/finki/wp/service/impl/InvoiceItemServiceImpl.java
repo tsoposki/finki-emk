@@ -26,7 +26,7 @@ public class InvoiceItemServiceImpl extends
 
     @Override
     protected InvoiceItemRepository getRepository() {
-        return null;
+        return repository;
     }
 
 //    @Override
