@@ -92,10 +92,7 @@ WebInvoicingApp.run([
 
 
     $rootScope.$on('$routeChangeStart', function (event) {
-      console.log($location.path());
-
-      var permit = authProvider.isLoggedIn();
-
+      var permit = $rootScope.user != null;
       if(!permit) {
         allowedPaths.forEach(function(item) {
           if (item == $location.path()) {
@@ -105,13 +102,13 @@ WebInvoicingApp.run([
         });
       }
 
-      if(permit) {
-        console.log('ALLOW');
-      }
-      else {
+      if(!permit) {
         console.log('DENY : Redirecting to Login');
         event.preventDefault();
         $location.path('/login');
+      }
+      else {
+        console.log('ALLOW');
       }
     });
 

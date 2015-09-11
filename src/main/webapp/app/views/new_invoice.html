@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="invoice-title">
-        <h2>New Invoice</h2>
+        <h2>Нова фактура</h2>
       </div>
       <hr>
 
-      <strong>Partner:</strong>
+      <strong>Партнер:</strong>
 
       <div class="row">
         <div class="col-md-6">
@@ -20,7 +20,7 @@
       </div>
 
 
-      <strong>Issue Date:</strong><br>
+      <strong>Датум на издавање:</strong><br>
 
       <div class="row">
         <div class="col-md-6">
@@ -37,7 +37,7 @@
 
       </div>
 
-      <strong>Maturity Date:</strong><br>
+      <strong>Датум на достасување:</strong><br>
 
       <div class="row">
         <div class="col-md-6">
@@ -55,7 +55,7 @@
       </div>
 
 
-      <strong>Payment Type:</strong>
+      <strong>Вид на плаќање:</strong>
 
       <div class="row">
         <div class="col-md-6">
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <strong>Currency:</strong>
+      <strong>Валута:</strong>
 
       <div class="row">
         <div class="col-md-6">
@@ -87,7 +87,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><strong>Order summary</strong></h3>
+          <h3 class="panel-title"><strong>Резиме</strong></h3>
         </div>
         <div class="panel-body">
           <div class="table-responsive">
@@ -104,7 +104,7 @@
                   <div class="form-group">
                     <input class="form-control"
                            type="number"
-                           placeholder="Quantity"
+                           placeholder="Количина"
                            ng-model="newItem.quantity">
                   </div>
 
@@ -113,17 +113,17 @@
                   <button type="button"
                           ng-click="addNewItem()"
                           class="btn btn-small btn-primary">
-                    Add item
+                    Додади артикл
                   </button>
                 </td>
               </tr>
 
               <tr>
-                <td><strong>Item</strong></td>
-                <td class="text-center"><strong>Price</strong></td>
-                <td class="text-center"><strong>Tax</strong></td>
-                <td class="text-center"><strong>Quantity</strong></td>
-                <td class="text-right"><strong>Totals</strong></td>
+                <td><strong>Артикл</strong></td>
+                <td class="text-center"><strong>Цена</strong></td>
+                <td class="text-center"><strong>Данок</strong></td>
+                <td class="text-center"><strong>Количина</strong></td>
+                <td class="text-right"><strong>Вкупно</strong></td>
               </tr>
               </thead>
               <tbody>
@@ -142,21 +142,21 @@
                 <td class="thick-line"></td>
                 <td class="thick-line"></td>
                 <td class="thick-line"></td>
-                <td class="thick-line text-center"><strong>Subtotal</strong></td>
+                <td class="thick-line text-center"><strong>Субтотално</strong></td>
                 <td class="thick-line text-right">{{ newInvoice.totalPrice }}</td>
               </tr>
               <tr>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
-                <td class="no-line text-center"><strong>Tax</strong></td>
+                <td class="no-line text-center"><strong>Данок</strong></td>
                 <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ newInvoice.totalTax }} </td>
               </tr>
               <tr>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
                 <td class="no-line"></td>
-                <td class="no-line text-center"><strong>Total</strong></td>
+                <td class="no-line text-center"><strong>Вкупно</strong></td>
                 <td class="no-line text-right">{{ invoiceItem.item.currency.name }} {{ newInvoice.totalPrice + newInvoice.totalTax }}</td>
               </tr>
               <tr>

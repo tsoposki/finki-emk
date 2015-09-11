@@ -1,17 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <a href="#/new_invoice">
-        <button type="button" class="btn btn-primary btn-lg">
-          Креирај фактура
-        </button>
-      </a>
 
-      <hr>
-
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <div class="panel panel-default masterPanel">
+
+        <div class="form-group">
+          <label>Пребарај:
+            <input class="form-control" ng-model="search.$"></label>
+
+          <a href="#/new_invoice">
+            <button type="button" class="btn btn-success btn-lg pull-right">
+              Креирај фактура <span class="glyphicon glyphicon-plus"></span>
+            </button>
+          </a>
+
+        </div>
+
+
         <div class="table-responsive">
           <table class="table table-hover table-striped masterTable">
             <thead>
@@ -26,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="invoice in entities">
+            <tr ng-repeat="invoice in entities track by id | filter:search:strict" >
               <td>
                 <a
                   href=""

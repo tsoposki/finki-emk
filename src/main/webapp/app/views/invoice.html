@@ -2,13 +2,13 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="invoice-title">
-        <h2>Invoice</h2><h3 class="pull-right">Order # {{ entity.id }}</h3>
+        <h2>Фактура</h2><h3 class="pull-right">Бр. # {{ entity.id }}</h3>
       </div>
       <hr>
       <div class="row">
         <div class="col-xs-6">
           <address>
-            <strong>Billed To:</strong><br>
+            <strong>Наплатено на:</strong><br>
             {{ entity.partner.name }}<br>
             {{ entity.partner.address.name }}
             {{ entity.partner.address.postalCode }}<br>
@@ -17,12 +17,12 @@
         </div>
         <div class="col-xs-6 text-right">
           <address>
-            <strong>Issue Date:</strong><br>
+            <strong>Датум на издавање:</strong><br>
             {{ issueDate }} <br><br>
           </address>
 
           <address>
-            <strong>Maturity Date:</strong><br>
+            <strong>Датум на достасување:</strong><br>
             {{ maturityDate }}<br><br>
           </address>
         </div>
@@ -30,12 +30,12 @@
       <div class="row">
         <div class="col-xs-6">
           <address>
-            <strong>Currency:</strong><br>
+            <strong>Валута:</strong><br>
             {{ entity.currency.name }}<br>
           </address>
 
           <address>
-            <strong>Payment Method:</strong><br>
+            <strong>Вид на плаќање:</strong><br>
             {{ entity.paymentType.name }}<br>
           </address>
         </div>
@@ -47,18 +47,18 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><strong>Order summary</strong></h3>
+          <h3 class="panel-title"><strong>Резиме</strong></h3>
         </div>
         <div class="panel-body">
           <div class="table-responsive">
             <table class="table table-condensed">
               <thead>
               <tr>
-                <td><strong>Item</strong></td>
-                <td class="text-center"><strong>Price</strong></td>
-                <td class="text-center"><strong>Tax</strong></td>
-                <td class="text-center"><strong>Quantity</strong></td>
-                <td class="text-right"><strong>Totals</strong></td>
+                <td><strong>Артикл</strong></td>
+                <td class="text-center"><strong>Цена</strong></td>
+                <td class="text-center"><strong>Данок</strong></td>
+                <td class="text-center"><strong>Количина</strong></td>
+                <td class="text-right"><strong>Вкупно</strong></td>
               </tr>
               </thead>
               <tbody>

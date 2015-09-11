@@ -1,14 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#createItemModal">
-        Креирај артикл
-      </button>
-      <hr>
-
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-12">
       <div class="panel panel-default masterPanel">
+        <div class="form-group">
+          <label>Пребарај:
+            <input class="form-control" ng-model="search.$"></label>
+
+          <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#createItemModal">
+            Креирај артикл <span class="glyphicon glyphicon-plus"></span>
+          </button>
+
+        </div>
+
+
         <div class="table-responsive">
           <table class="table table-hover table-striped masterTable">
             <thead>
@@ -20,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="item in entities">
+            <tr ng-repeat="item in entities | filter:search:strict">
               <td>
                 <a
                   href=""
