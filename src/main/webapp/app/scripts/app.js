@@ -20,7 +20,7 @@ var WebInvoicingApp = angular.module('webInvoicingApp', ['ngResource', 'ngRoute'
   'pascalprecht.translate']);
 
 WebInvoicingApp.config(['$translateProvider', '$httpProvider', 'settings',
-  function($translateProvider, $httpProvider, settings) {
+  function ($translateProvider, $httpProvider, settings) {
 
     $httpProvider.interceptors.push('HttpInterceptors');
 
@@ -41,46 +41,80 @@ WebInvoicingApp.run([
   '$http',
   '$cookies',
   '$location',
+  'authProvider',
   'crudService',
   '$cookieStore',
   'UserService',
-  function($rootScope,
-           $http,
-           $cookies,
-           $location,
-           crudService,
-           $cookieStore,
-           UserService) {
+  function ($rootScope,
+            $http,
+            $cookies,
+            $location,
+            authProvider,
+            crudService,
+            $cookieStore,
+            UserService) {
+
+    var allowedPaths = [
+      '/',
+      '/register',
+      '/login'
+    ]
 
     var categoryService = crudService('categories');
 
     $rootScope.categories = categoryService.query();
 
     $rootScope.authToken = $cookieStore.get('token');
-    if($rootScope.authToken) {
-      UserService.get(function(u) {
+    if ($rootScope.authToken) {
+      UserService.get(function (u) {
         $rootScope.user = u;
       });
     }
 
-    $rootScope.logout = function() {
+    $rootScope.logout = function () {
       delete $rootScope.user;
       delete $rootScope.authToken;
       $cookies['token'] = null;
       delete $cookies['token'];
-      var delete_cookie = function(name) {
+      var delete_cookie = function (name) {
         document.cookie = name + '=; Path=/e-auction; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       };
       delete_cookie('token');
       $location.path("/login");
     };
 
-    if(!$rootScope.authToken) {
+    if (!$rootScope.authToken) {
       var tempTokenService = $http.get('/data/rest/token').
-        success(function(data, status, headers, config) {
+        success(function (data, status, headers, config) {
           console.log('token obtained')
         });
     }
 
 
-  }]);
+    $rootScope.$on('$routeChangeStart', function (event) {
+      console.log($location.path());
+
+      var permit = authProvider.isLoggedIn();
+
+      if(!permit) {
+        allowedPaths.forEach(function(item) {
+          if (item == $location.path()) {
+            console.log('contains!');
+            permit = true;
+          }
+        });
+      }
+
+      if(permit) {
+        console.log('ALLOW');
+      }
+      else {
+        console.log('DENY : Redirecting to Login');
+        event.preventDefault();
+        $location.path('/login');
+      }
+    });
+
+  }
+])
+;

@@ -24,6 +24,7 @@
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="css/styles.css">
   <!-- endbuild -->
 
   <%--<script type="text/javascript">--%>
@@ -145,6 +146,7 @@
 <script src="scripts/services/orders.js"></script>
 <script src="scripts/services/items.js"></script>
 <script src="scripts/services/invoice.js"></script>
+<script src="scripts/services/authProvider.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>

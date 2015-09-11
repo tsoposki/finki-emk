@@ -1,146 +1,199 @@
 <form class="form-horizontal" action='' method="POST">
   <fieldset>
-    <div id="legendUser">
-      <legend class="">User Details</legend>
-    </div>
-    <div class="control-group">
-      <!-- Username -->
-      <label class="control-label" for="username">Username</label>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="legendUser">
+            <legend class="">Детали за корисникот</legend>
+          </div>
 
-      <div class="controls">
-        <input type="text"
-               id="username"
-               ng-model="newUser.username"
-               name="username"
-               placeholder=""
-               class="input-xlarge">
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="firstName">Име</label>
 
-        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+            <div class="controls">
+              <input type="text"
+                     id="firstName"
+                     ng-model="newUser.firstName"
+                     name="firstName"
+                     placeholder="Име"
+                     class="form-control">
+
+              <p class="help-block">Внесете го Вашето Име</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="lastName">Презиме</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="lastName"
+                     ng-model="newUser.lastName"
+                     name="lastName"
+                     placeholder="Презиме"
+                     class="form-control">
+
+              <p class="help-block">Внесете го Вашето презиме</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">Корисничко име</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="username"
+                     ng-model="newUser.username"
+                     name="username"
+                     placeholder="Корисничко име"
+                     class="form-control">
+
+              <p class="help-block">Внесете го Вашето корисничко име</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">E-mail</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="email"
+                     ng-model="newUser.email"
+                     name="email"
+                     placeholder="E-mail"
+                     class="form-control">
+
+              <p class="help-block">Внесете го Вашиот e-mail</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Лозинка</label>
+
+            <div class="controls">
+              <input type="password"
+                     id="password"
+                     ng-model="newUser.password"
+                     name="password"
+                     placeholder="Лозинка"
+                     class="form-control">
+
+              <p class="help-block">Внесете лозинка</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div id="legend">
+            <legend class="">Company Details</legend>
+          </div>
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">Name</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="name"
+                     ng-model="newCompany.name"
+                     name="username"
+                     placeholder=""
+                     class="form-control">
+
+              <p class="help-block">Please provide the name of your company</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">Phone</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="phone"
+                     ng-model="newCompany.phone"
+                     name="phone"
+                     placeholder=""
+                     class="form-control">
+
+              <p class="help-block">Please provide your phone</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Address-->
+            <label class="control-label" for="password">Address</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="address"
+                     ng-model="newCompany.address.streetName"
+                     name="address"
+                     placeholder=""
+                     class="form-control">
+
+              <p class="help-block">Please provide your address</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Postal code-->
+            <label class="control-label" for="password">Postal code</label>
+
+            <div class="controls">
+              <input type="text"
+                     id="postalCode"
+                     ng-model="newCompany.address.postalCode"
+                     name="postalCode"
+                     placeholder=""
+                     class="form-control">
+
+              <p class="help-block">Please provide your postal code</p>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- City-->
+            <label class="control-label" for="password">City</label>
+
+            <div class="controls">
+              <select
+                class="form-control"
+                ng-options="city as city.name for city in cities"
+                ng-model="newCompany.address.city">
+              </select>
+
+              <p class="help-block">Please select your city</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="control-group">
-      <!-- E-mail -->
-      <label class="control-label" for="email">E-mail</label>
-
-      <div class="controls">
-        <input type="text"
-               id="email"
-               ng-model="newUser.email"
-               name="email"
-               placeholder=""
-               class="input-xlarge">
-
-        <p class="help-block">Please provide your E-mail</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- Password-->
-      <label class="control-label" for="password">Password</label>
-
-      <div class="controls">
-        <input type="password"
-               id="password"
-               ng-model="newUser.password"
-               name="password"
-               placeholder=""
-               class="input-xlarge">
-
-        <p class="help-block">Password should be at least 4 characters</p>
-      </div>
-    </div>
 
     <br/>
 
-    <div id="legend">
-      <legend class="">Company Details</legend>
-    </div>
-    <div class="control-group">
-      <!-- Username -->
-      <label class="control-label" for="username">Name</label>
 
-      <div class="controls">
-        <input type="text"
-               id="name"
-               ng-model="newCompany.name"
-               name="username"
-               placeholder=""
-               class="input-xlarge">
+    <div class="row">
+      <div class="col-md-2">
 
-        <p class="help-block">Username can contain any letters or numbers, without spaces</p>
       </div>
-    </div>
 
-    <div class="control-group">
-      <!-- E-mail -->
-      <label class="control-label" for="email">Phone</label>
-
-      <div class="controls">
-        <input type="text"
-               id="phone"
-               ng-model="newCompany.phone"
-               name="phone"
-               placeholder=""
-               class="input-xlarge">
-
-        <p class="help-block">Please provide your phone</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- Address-->
-      <label class="control-label" for="password">Address</label>
-
-      <div class="controls">
-        <input type="text"
-               id="address"
-               ng-model="newCompany.address.streetName"
-               name="address"
-               placeholder=""
-               class="input-xlarge">
-
-        <p class="help-block">Please provide your address</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- Postal code-->
-      <label class="control-label" for="password">Postal code</label>
-
-      <div class="controls">
-        <input type="text"
-               id="postalCode"
-               ng-model="newCompany.address.postalCode"
-               name="postalCode"
-               placeholder=""
-               class="input-xlarge">
-
-        <p class="help-block">Please provide your postal code</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- City-->
-      <label class="control-label" for="password">City</label>
-
-      <div class="controls">
-        <select
-          class="form-control"
-          ng-options="city as city.name for city in cities"
-          ng-model="newCompany.address.city">
-        </select>
-
-        <p class="help-block">Please select your city</p>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <!-- Button -->
-      <div class="controls">
-        <button class="btn btn-success"
-                ng-click="save(newUser, newCompany)">Register
-        </button>
+      <div class="col-md-8">
+        <a class="btn btn-primary btn-lg btn-block btnRegister hidden-xs"
+           href=""
+           ng-click="save(newUser, newCompany)">
+          Регистрирај се <strong>бесплатно</strong> веднаш!
+        </a>
+        <a class="btn btn-primary btn-lg btn-block btnRegister hidden-sm hidden-md hidden-lg"
+           href=""
+           ng-click="save(newUser, newCompany)">
+          Регистрирај се <br><strong>бесплатно</strong> веднаш!
+        </a>
       </div>
     </div>
   </fieldset>

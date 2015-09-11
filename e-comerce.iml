@@ -11,24 +11,6 @@
         </webroots>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/security-config-static.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-errors-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/datasource-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/security-db-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-core-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/mail/mail-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/security-rest-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/business-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/security-cas-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/tools-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/mvc-view-config.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/security-config.xml</file>
-        </fileset>
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />

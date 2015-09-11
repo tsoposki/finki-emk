@@ -12,7 +12,7 @@
  */
 WebInvoicingApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'views/main.html',
+    templateUrl: 'views/landing.html',
     controller: 'MainCtrl'
   });
 
