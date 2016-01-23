@@ -67,17 +67,17 @@ public class PartnerResource extends
                 response.setStatus(HttpServletResponse.SC_CREATED);
                 res.setMessage("Successfully created");
                 res.setSuccess(true);
-                res.setEntity(entity);
+                res.setData(entity);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
 
                 res.setMessage("Exceeded the maximum allowable limit for items");
                 res.setSuccess(false);
-                res.setEntity(null);
+                res.setData(null);
             }
         }
 
-        return null;
+        return res;
     }
 
 }

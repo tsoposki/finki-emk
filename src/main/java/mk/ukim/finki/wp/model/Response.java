@@ -3,19 +3,19 @@ package mk.ukim.finki.wp.model;
 public class Response {
     private String message;
     private Boolean success;
-    private Object entity;
+    private Object data;
 
 
-    public Response(String message, Boolean success, Object entity) {
+    public Response(String message, Boolean success, Object data) {
         this.message = message;
         this.success = success;
-        this.entity = entity;
+        this.data = data;
     }
 
     public Response() {
         this.message = null;
         this.success = null;
-        this.entity = null;
+        this.data = null;
     }
 
     public String getMessage() {
@@ -34,11 +34,11 @@ public class Response {
         this.success = success;
     }
 
-    public Object getEntity() {
-        return entity;
+    public Object getData() {
+        return data;
     }
 
-    public void setEntity(Object entity) {
-        this.entity = entity;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

@@ -35,14 +35,8 @@ public class OrderItemResource extends
     entity.setUserToken(RequestProcessor.tempToken(request));
     getService().save(entity);
 
-    Response res = new Response();
     response.setStatus(HttpServletResponse.SC_CREATED);
-
-    res.setMessage("Successfully created");
-    res.setSuccess(true);
-    res.setEntity(entity);
-
-    return res;
+    return new Response("Successfully created", true, entity);
   }
 
   @RequestMapping(value = "/my", method = RequestMethod.GET, produces = "application/json")

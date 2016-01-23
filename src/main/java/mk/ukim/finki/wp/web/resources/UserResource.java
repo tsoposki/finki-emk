@@ -83,7 +83,6 @@ public class UserResource {
                 c.setMaxAge(TOKEN_DURATION);
                 c.setPath(request.getContextPath());
                 response.addCookie(c);
-                System.out.println("Found cookie");
                 return;
             }
         }
@@ -118,7 +117,6 @@ public class UserResource {
 
         entity.setRole(User.Role.ROLE_USERS);
         service.save(entity);
-        System.out.println("Created new user!");
         return entity;
     }
 

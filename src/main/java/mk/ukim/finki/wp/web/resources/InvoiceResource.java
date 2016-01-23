@@ -36,8 +36,6 @@ public class InvoiceResource extends
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public Response create(@RequestBody Invoice entity, HttpServletRequest request, HttpServletResponse response) {
-
-        System.out.println(entity);
         String username = RequestProcessor.getUsername();
         User user = userService.findByUsername(username);
         Response res = new Response();
@@ -52,16 +50,14 @@ public class InvoiceResource extends
                 getService().save(entity);
 
                 response.setStatus(HttpServletResponse.SC_CREATED);
-
                 res.setMessage("Successfully created");
                 res.setSuccess(true);
-                res.setEntity(entity);
+                res.setData(entity);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-
                 res.setMessage("Exceeded the maximum allowable limit for invoices");
                 res.setSuccess(false);
-                res.setEntity(null);
+                res.setData(null);
             }
         }
 
@@ -79,11 +75,7 @@ public class InvoiceResource extends
         String username = RequestProcessor.getUsername();
         User user = userService.findByUsername(username);
 
-        System.out.println(username);
-        System.out.println(user.getCompany().getId());
-
         if (user.getCompany() != null) {
-            System.out.println("getting invoices");
             return service.findByCompany(user.getCompany());
         }
 
@@ -99,7 +91,6 @@ public class InvoiceResource extends
 
         if (user.getCompany() != null) {
             Invoice entity = getService().findOne(id);
-            System.out.println(entity);
 
             if (entity == null) {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);

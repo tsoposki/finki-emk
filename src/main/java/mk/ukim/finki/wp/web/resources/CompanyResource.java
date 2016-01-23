@@ -50,10 +50,7 @@ public class CompanyResource extends
         getService().save(entity);
 
         response.setStatus(HttpServletResponse.SC_CREATED);
-
-        List<Object> list = new ArrayList<>();
-        list.add(entity);
-        return new Response("Successfully created", true, list);
+        return new Response("Successfully created", true, entity);
     }
 
 }
