@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.web.resources;
 
 import mk.ukim.finki.wp.model.Company;
+import mk.ukim.finki.wp.model.Response;
 import mk.ukim.finki.wp.service.CompanyService;
 import mk.ukim.finki.wp.service.SubscriptionService;
 import mk.ukim.finki.wp.web.CrudResource;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/data/rest/companies")
@@ -33,8 +36,8 @@ public class CompanyResource extends
 
     @Override
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public Company create(@RequestBody Company entity, HttpServletRequest request,
-                          HttpServletResponse response) {
+    public Response create(@RequestBody Company entity, HttpServletRequest request,
+                           HttpServletResponse response) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username;
 
@@ -43,12 +46,14 @@ public class CompanyResource extends
         } else {
             username = principal.toString();
         }
-
         entity.setSubscription(subscriptionService.findOne((long)1));
         getService().save(entity);
 
-        System.out.println("Created Company from CompanyResource");
-        return entity;
+        response.setStatus(HttpServletResponse.SC_CREATED);
+
+        List<Object> list = new ArrayList<>();
+        list.add(entity);
+        return new Response("Successfully created", true, list);
     }
 
 }

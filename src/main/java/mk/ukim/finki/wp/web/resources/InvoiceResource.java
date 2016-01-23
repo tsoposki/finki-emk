@@ -3,17 +3,16 @@ package mk.ukim.finki.wp.web.resources;
 import mk.ukim.finki.wp.model.*;
 import mk.ukim.finki.wp.service.InvoiceItemService;
 import mk.ukim.finki.wp.service.InvoiceService;
-import mk.ukim.finki.wp.service.ItemService;
 import mk.ukim.finki.wp.service.UserService;
 import mk.ukim.finki.wp.web.CrudResource;
 
 import mk.ukim.finki.wp.web.util.RequestProcessor;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,11 +35,13 @@ public class InvoiceResource extends
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public Invoice create(@RequestBody Invoice entity, HttpServletRequest request, HttpServletResponse response) {
+    public Response create(@RequestBody Invoice entity, HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println(entity);
         String username = RequestProcessor.getUsername();
         User user = userService.findByUsername(username);
+        Response res = new Response();
+
         if (user != null) {
             Company company = user.getCompany();
             List<Invoice> invoices = service.findByCompany(company);
@@ -49,16 +50,22 @@ public class InvoiceResource extends
                 entity.setCompany(company);
                 saveInvoiceItems(entity.getInvoiceItems());
                 getService().save(entity);
-                System.out.println("Created Invoice from InvoiceResource");
-                System.out.printf("Number of partners = %d\n", invoices.size());
-                return entity;
+
+                response.setStatus(HttpServletResponse.SC_CREATED);
+
+                res.setMessage("Successfully created");
+                res.setSuccess(true);
+                res.setEntity(entity);
             } else {
-                System.out.printf("ERROR! Number of invoices = %d\n", invoices.size());
-                System.out.printf("Limit of invoices = %d\n", company.getSubscription().getInvoicesLimit());
+                response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+
+                res.setMessage("Exceeded the maximum allowable limit for invoices");
+                res.setSuccess(false);
+                res.setEntity(null);
             }
         }
 
-        return null;
+        return res;
     }
 
     private void saveInvoiceItems(List<InvoiceItem> invoiceItems) {

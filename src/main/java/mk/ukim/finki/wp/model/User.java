@@ -8,7 +8,8 @@ public class User extends BaseEntity {
 
 	@OneToOne
 	private Company company;
-	private String fistName;
+
+	private String firstName;
 	private String lastName;
 	@Column(unique = true)
 	private String username;
@@ -25,14 +26,6 @@ public class User extends BaseEntity {
 
 	public void setCompany(Company company) {
 		this.company = company;
-	}
-
-	public String getFistName() {
-		return fistName;
-	}
-
-	public void setFistName(String fistName) {
-		this.fistName = fistName;
 	}
 
 	public String getLastName() {
@@ -73,6 +66,14 @@ public class User extends BaseEntity {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public enum Role {

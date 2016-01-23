@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.web.resources;
 
 import mk.ukim.finki.wp.model.Company;
 import mk.ukim.finki.wp.model.Partner;
+import mk.ukim.finki.wp.model.Response;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.service.PartnerService;
 import mk.ukim.finki.wp.service.UserService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,11 +49,13 @@ public class PartnerResource extends
 
     @Override
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public Partner create(@RequestBody Partner entity, HttpServletRequest request,
-                          HttpServletResponse response) {
+    public Response create(@RequestBody Partner entity, HttpServletRequest request,
+                           HttpServletResponse response) {
 
         String username = RequestProcessor.getUsername();
         User user = userService.findByUsername(username);
+        Response res = new Response();
+
         if (user != null) {
             Company company = user.getCompany();
             List<Partner> partners = service.findByCompany(company);
@@ -59,12 +63,17 @@ public class PartnerResource extends
             if (partners.size() < company.getSubscription().getPartnersLimit()) {
                 entity.setCompany(company);
                 getService().save(entity);
-                System.out.println("Created Partner from PartnerResource");
-                System.out.printf("Number of partners = %d\n", partners.size());
-                return entity;
+
+                response.setStatus(HttpServletResponse.SC_CREATED);
+                res.setMessage("Successfully created");
+                res.setSuccess(true);
+                res.setEntity(entity);
             } else {
-                System.out.printf("ERROR! Number of partners = %d\n", partners.size());
-                System.out.printf("Limit of partners = %d\n", company.getSubscription().getPartnersLimit());
+                response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+
+                res.setMessage("Exceeded the maximum allowable limit for items");
+                res.setSuccess(false);
+                res.setEntity(null);
             }
         }
 

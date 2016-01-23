@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.web;
 
 import mk.ukim.finki.wp.model.BaseEntity;
+import mk.ukim.finki.wp.model.Response;
 import mk.ukim.finki.wp.service.BaseEntityCrudService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,11 +26,11 @@ public abstract class CrudResource<T extends BaseEntity, S extends BaseEntityCru
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public T create(@RequestBody @Valid T entity, HttpServletRequest request,
-                    HttpServletResponse response) {
+    public Response create(@RequestBody @Valid T entity, HttpServletRequest request,
+                           HttpServletResponse response) {
         getService().save(entity);
         System.out.println("Created Address from AddressResource");
-        return entity;
+        return new Response();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")

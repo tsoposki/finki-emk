@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.web.resources;
 
 import mk.ukim.finki.wp.model.OrderItem;
+import mk.ukim.finki.wp.model.Response;
 import mk.ukim.finki.wp.service.OrderItemService;
 import mk.ukim.finki.wp.web.CrudResource;
 import mk.ukim.finki.wp.web.util.RequestProcessor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,11 +30,19 @@ public class OrderItemResource extends
   }
 
   @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-  public OrderItem create(@RequestBody OrderItem entity, HttpServletRequest request,
-                          HttpServletResponse response) {
+  public Response create(@RequestBody OrderItem entity, HttpServletRequest request,
+                         HttpServletResponse response) {
     entity.setUserToken(RequestProcessor.tempToken(request));
     getService().save(entity);
-    return entity;
+
+    Response res = new Response();
+    response.setStatus(HttpServletResponse.SC_CREATED);
+
+    res.setMessage("Successfully created");
+    res.setSuccess(true);
+    res.setEntity(entity);
+
+    return res;
   }
 
   @RequestMapping(value = "/my", method = RequestMethod.GET, produces = "application/json")
@@ -44,6 +54,5 @@ public class OrderItemResource extends
   public void pay(HttpServletRequest request) {
     System.out.println("pay invoked");
   }
-
 
 }

@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.web.resources;
 
 import mk.ukim.finki.wp.model.Company;
 import mk.ukim.finki.wp.model.Item;
+import mk.ukim.finki.wp.model.Response;
 import mk.ukim.finki.wp.model.User;
 import mk.ukim.finki.wp.service.ItemService;
 import mk.ukim.finki.wp.service.UserService;
@@ -15,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -61,11 +63,13 @@ public class ItemResource extends CrudResource<Item, ItemService> {
 
     @Override
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public Item create(@RequestBody Item entity, HttpServletRequest request,
-                       HttpServletResponse response) {
+    public Response create(@RequestBody Item entity, HttpServletRequest request,
+                           HttpServletResponse response) {
 
         String username = RequestProcessor.getUsername();
         User user = userService.findByUsername(username);
+        Response res = new Response();
+
         if (user != null) {
             Company company = user.getCompany();
             List<Item> items = service.findByCompany(company);
@@ -73,15 +77,20 @@ public class ItemResource extends CrudResource<Item, ItemService> {
             if (items.size() < company.getSubscription().getItemsLimit()) {
                 entity.setCompany(company);
                 getService().save(entity);
-                System.out.println("Created Item from ItemResource");
-                System.out.printf("Number of items = %d\n", items.size());
-                return entity;
+                response.setStatus(HttpServletResponse.SC_CREATED);
+
+                res.setMessage("Successfully created");
+                res.setSuccess(true);
+                res.setEntity(entity);
             } else {
-                System.out.printf("ERROR! Number of items = %d\n", items.size());
-                System.out.printf("Limit of items = %d\n", company.getSubscription().getItemsLimit());
+                response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+
+                res.setMessage("Exceeded the maximum allowable limit for items");
+                res.setSuccess(false);
+                res.setEntity(null);
             }
         }
 
-        return null;
+        return res;
     }
 }

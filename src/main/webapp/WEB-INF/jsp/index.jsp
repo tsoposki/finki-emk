@@ -147,6 +147,7 @@
 <script src="scripts/services/items.js"></script>
 <script src="scripts/services/invoice.js"></script>
 <script src="scripts/services/authProvider.js"></script>
+<script src="scripts/util/util.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>
